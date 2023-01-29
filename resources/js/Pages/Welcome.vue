@@ -19,17 +19,17 @@ defineProps({
             <Link
                 v-if="$page.props.auth.user"
                 :href="route('dashboard')"
-                class="text-sm text-gray-700 dark:text-gray-500 underline"
+                class="text-lg font-semibold text-gray-700 dark:text-gray-500 underline"
                 >Dashboard</Link
             >
 
             <template v-else>
-                <Link :href="route('login')" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</Link>
+                <Link :href="route('login')" class="text-lg font-semibold text-gray-700 dark:text-gray-500 underline">Log in</Link>
 
                 <Link
                     v-if="canRegister"
                     :href="route('register')"
-                    class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline"
+                    class="ml-4 text-lg font-semibold text-gray-700 dark:text-gray-500 underline"
                     >Register</Link
                 >
             </template>
