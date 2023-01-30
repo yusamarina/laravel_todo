@@ -8,12 +8,13 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redis;
 use Termwind\Components\Raw;
 use Validator;
+use App\Models\Task;
 
 class TaskController extends Controller
 {
     public function index (Request $request)
     {
-        $items = DB::table('tasks')->orderBy('id', 'desc')->get();
+        $items = Task::all();
         return view('task.index', ['items' => $items]);
     }
 
@@ -24,12 +25,6 @@ class TaskController extends Controller
         return view('task.show', ['items' => $items]);
     }
 
-    public function post(Request $request)
-    {
-        $items = DB::select('select * from tasks');
-        return view('task.index', ['items' => $items]);
-    }
-
     public function add(Request $request)
     {
         return view('task.add');
@@ -37,40 +32,51 @@ class TaskController extends Controller
 
     public function create(Request $request)
     {
-        $param = [
-            'title' => $request->title,
-            'memo' => $request->memo,
-        ];
-        DB::table('tasks')->insert($param);
+        $this->validate($request, Task::$rules);
+        $task = new Task;
+        $form = $request->all();
+        unset($form['_token']);
+        $task->fill($form)->save();
         return redirect('/task');
     }
 
     public function edit(Request $request)
     {
-        $item = DB::table('tasks')->where('id', $request->id)->first();
-        return view('task.edit', ['form' => $item]);
+        $task =Task::find($request->id);
+        return view('task.edit',['form' => $task]);
     }
 
     public function update(Request $request)
     {
-        $param = [
-            'id' => $request->id,
-            'title' => $request->title,
-            'memo' => $request->memo,
-        ];
-        DB::table('tasks')->where('id', $request->id)->update($param);
+        $this->validate($request, Task::$rules);
+        $task = Task::find($request->id);
+        $form = $request->all();
+        unset($form['_token']);
+        $task->fill($form)->save();
         return redirect('/task');
     }
 
-    public function del(Request $request)
+    public function delete(Request $request)
     {
-        $item = DB::table('tasks')->where('id', $request->id)->first();
-        return view('task.del', ['form' => $item]);
+        $task = Task::find($request->id);
+        return view('task.delete', ['form' => $task]);
     }
 
     public function remove(Request $request)
     {
-        DB::table('tasks')->where('id', $request->id)->delete();
+        Task::find($request->id)->delete();
         return redirect('/task');
+    }
+
+    public function find(Request $request)
+    {
+        return view('task.find', ['input' => '']);
+    }
+
+    public function search(Request $request)
+    {
+        $item = Task::titleEqual($request->input)->first();
+        $param = ['input' => $request->input, 'item' => $item];
+        return view('task.find', $param);
     }
 }

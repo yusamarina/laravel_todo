@@ -1,14 +1,11 @@
-@extends('layouts.app')
+<x-app-layout>
+  <x-slot name="header">
+      <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+          {{ __('Delete ToDo') }}
+      </h2>
+  </x-slot>
 
-@section('title', 'Delete')
-
-@section('menubar')
-  @parent
-  削除ページ
-@endsection
-
-@section('content')
-  <form action="/task/del" method="post">
+  <form action="/task/delete" method="post">
     <table>
       @csrf
       <input type="hidden" name="id" value="{{ $form->id }}">
@@ -17,8 +14,4 @@
       <tr><th></th><td><input type="submit" value="send"></td></tr>
     </table>
   </form>
-@endsection
-
-@section('footer')
-copyright 2023 laravel_todo.
-@endsection
+</x-app-layout>

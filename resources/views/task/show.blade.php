@@ -1,13 +1,10 @@
-@extends('layouts.app')
+<x-app-layout>
+  <x-slot name="header">
+      <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+          {{ __('ToDo') }}
+      </h2>
+  </x-slot>
 
-@section('title', 'Show')
-
-@section('menubar')
-  @parent
-  詳細ページ
-@endsection
-
-@section('content')
   @if ($items != null)
     @foreach($items as $item)
       <table width="400px">
@@ -18,8 +15,4 @@
       </table>
     @endforeach
   @endif
-@endsection
-
-@section('footer')
-copyright 2023 laravel_todo.
-@endsection
+</x-app-layout>

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TaskController;
 use App\Http\Middleware\TaskMiddleware;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -18,32 +19,30 @@ use Inertia\Inertia;
 */
 
 Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
+    return view('welcome');
 });
 
 Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__ . '/auth.php';
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('task', [TaskController::class, 'index'])->name('task_index');
+    Route::get('task/show', [TaskController::class, 'show'])->name('task_show');
+    Route::post('task', [TaskController::class, 'post']);
+    Route::get('task/add', [TaskController::class, 'add'])->name('task_add');
+    Route::post('task/add', [TaskController::class, 'create']);
+    Route::get('task/edit', [TaskController::class, 'edit'])->name('task_edit');
+    Route::post('task/edit', [TaskController::class, 'update']);
+    Route::get('task/delete', [TaskController::class, 'delete'])->name('task_delete');
+    Route::post('task/delete',  [TaskController::class, 'remove']);
+    Route::get('task/find', [TaskController::class, 'find'])->name('task_find');
+    Route::post('task/find', [TaskController::class, 'search']);
 });
-
-Route::get('task', 'App\Http\Controllers\TaskController@index');
-Route::get('task/show', 'App\Http\Controllers\TaskController@show');
-Route::post('task', 'App\Http\Controllers\TaskController@post');
-Route::get('task/add', 'App\Http\Controllers\TaskController@add');
-Route::post('task/add', 'App\Http\Controllers\TaskController@create');
-Route::get('task/edit', 'App\Http\Controllers\TaskController@edit');
-Route::post('task/edit', 'App\Http\Controllers\TaskController@update');
-Route::get('task/del', 'App\Http\Controllers\TaskController@del');
-Route::post('task/del', 'App\Http\Controllers\TaskController@remove');
 
 require __DIR__.'/auth.php';
