@@ -13,17 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        if (!Schema::hasTable('tasks')) {
-            Schema::create('tasks', function (Blueprint $table) {
-                $table->id();
-                $table->string('title', 50);
-                $table->text('memo');
-                $table->integer('status')->default(0);
-                $table->timestamps();
-
-                $table->foreign('user_id')->references('id')->on('users');
-            });
-        }
+        Schema::create('tasks', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('user_id');
+            $table->string('title', 50);
+            $table->text('memo');
+            $table->boolean('status')->default(0);
+            $table->timestamps();
+        });
     }
 
     /**
