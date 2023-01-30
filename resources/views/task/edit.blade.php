@@ -1,13 +1,19 @@
-@extends('layouts.app')
+<x-app-layout>
+  <x-slot name="header">
+      <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+          {{ __('Edit ToDo') }}
+      </h2>
+  </x-slot>
 
-@section('title', 'Edit')
-
-@section('menubar')
-  @parent
-  更新ページ
-@endsection
-
-@section('content')
+  @if (count($errors) > 0)
+  <div>
+    <ul>
+      @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+      @endforeach
+    </ul>
+  </div>
+  @endif
   <form action="/task/edit" method="post">
     <table>
       @csrf
@@ -17,8 +23,4 @@
       <tr><th></th><td><input type="submit" value="send"></td></tr>
     </table>
   </form>
-@endsection
-
-@section('footer')
-copyright 2023 laravel_todo.
-@endsection
+</x-app-layout>

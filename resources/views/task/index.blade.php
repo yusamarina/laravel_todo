@@ -1,24 +1,16 @@
-@extends('layouts.app')
+<x-app-layout>
+  <x-slot name="header">
+      <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+          {{ __('ToDo List') }}
+      </h2>
+  </x-slot>
 
-@section('title', 'Index')
-
-@section('menubar')
-  @parent
-  インデックスページ
-@endsection
-
-@section('content')
-  <table>
-    <tr><th>Title</th><th>Memo</th></tr>
+  <table class="flex justify-center text-xl">
+    <tr><th class="py-6">ToDo List</th></tr>
     @foreach ($items as $item)
       <tr>
-        <td>{{ $item->title }}</td>
-        <td>{{ $item->memo }}</td>
+        <td>{{ $item->getData() }}</td>
       </tr>
     @endforeach
   </table>
-@endsection
-
-@section('footer')
-  copyright 2023 laravel_todo.
-@endsection
+</x-app-layout>
