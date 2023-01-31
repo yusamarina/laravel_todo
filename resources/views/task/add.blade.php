@@ -17,10 +17,15 @@
   <form action="/task/add" method="post">
     <table class="flex justify-center text-xl py-6">
       @csrf
-      <tr><th class="py-3">user: </th><td><input type="integer" name="user_id" value="{{ old('user_id') }}"></td></tr>
       <tr><th class="py-3">title: </th><td><input type="string" name="title" value="{{ old('title') }}"></td></tr>
       <tr><th class="py-3">memo: </th><td><input type="text" name="memo" value="{{ old('memo') }}"></td></tr>
-      <tr><th></th><td><input type="submit" value="send"></td></tr>
+      <tr><th class="py-3">status: </th><td>
+        <select class="form-control" name="status" value="{{ old('status') }}">
+          <option value=0>これからやる</option>
+          <option value=1>実行済み！</option>
+        </select>
+      </td></tr>
+      <tr><th></th><td><input type="submit" value="登録" class="m-1 bg-yellow-100 hover:bg-yellow-200 text-blue-900 py-2 px-4 border border-blue-900 rounded-full shadow"></td></tr>
     </table>
   </form>
 </x-app-layout>
