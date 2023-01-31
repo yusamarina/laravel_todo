@@ -9,20 +9,27 @@ use Illuminate\Support\Facades\Redis;
 use Termwind\Components\Raw;
 use Validator;
 use App\Models\Task;
+use Illuminate\View\View;
 
 class TaskController extends Controller
 {
     public function index (Request $request)
     {
-        $items = Task::all();
-        return view('task.index', ['items' => $items]);
+        $keyword = $request->input('keyword');
+        $query = Task::query();
+
+        if (!empty($keyword)) {
+            $query->where('title', 'LIKE', "%{$keyword}%");
+        }
+
+        $items = $query->get();
+        return view('task.index', compact('items', 'keyword'));
     }
 
-    public function show(Request $request)
+    public function show($id)
     {
-        $id = $request->id;
-        $items = DB::table('tasks')->where('id', '<=', $id)->get();
-        return view('task.show', ['items' => $items]);
+        $item = Task::find($id);
+        return view('task.show', compact('item'));
     }
 
     public function add(Request $request)
@@ -40,10 +47,10 @@ class TaskController extends Controller
         return redirect('/task');
     }
 
-    public function edit(Request $request)
+    public function edit($id)
     {
-        $task =Task::find($request->id);
-        return view('task.edit',['form' => $task]);
+        $task = Task::find($id);
+        return view('task.edit', compact('task'));
     }
 
     public function update(Request $request)
@@ -56,10 +63,10 @@ class TaskController extends Controller
         return redirect('/task');
     }
 
-    public function delete(Request $request)
+    public function delete($id)
     {
-        $task = Task::find($request->id);
-        return view('task.delete', ['form' => $task]);
+        $task = Task::find($id);
+        return view('task.delete', compact('task'));
     }
 
     public function remove(Request $request)

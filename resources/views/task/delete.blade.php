@@ -8,9 +8,9 @@
   <form action="/task/delete" method="post">
     <table>
       @csrf
-      <input type="hidden" name="id" value="{{ $form->id }}">
-      <tr><th>title: </th><td>{{ $form->title }}</td></tr>
-      <tr><th>memo: </th><td>{{ $form->memo }}</td></tr>
+      <input type="hidden" name="id" value="{{ $task->id }}">
+      <tr><th>title: </th><td>{{ $task->title }}</td></tr>
+      <tr><th>memo: </th><td>{{ $task->memo }}</td></tr>
       <tr><th></th><td><input type="submit" value="send"></td></tr>
     </table>
   </form>
