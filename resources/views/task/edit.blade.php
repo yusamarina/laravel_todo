@@ -23,8 +23,13 @@
             <h3 class="text-lg font-semibold text-gray-900 dark:text-white"><input type="string" name="title" value="{{ $task->title }}"></h3>
               <p class="my-4 font-light"><input type="text" name="memo" value="{{ $task->memo }}"></p>
               <select class="form-control" name="status" value="{{ $task->status }}">
-                <option value=0>これからやる</option>
-                <option value=1>実行済み！</option>
+                @if (old('status', $task->status ? '1' : '0') === "1")
+                  <option value={{ $task->status }}>完了</option>
+                  <option value=0>未着手</option>
+                @else
+                  <option value={{ $task->status }}>未着手</option>
+                  <option value=1>完了</option>
+                @endif
               </select>
             <figcaption class="flex items-center justify-center space-x-3">
               <div class="space-y-0.5 font-medium dark:text-white text-left">

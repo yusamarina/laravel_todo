@@ -11,14 +11,11 @@
         <p class="text-xl my-4 font-light">Memo: {{ $item->memo }}</p>
       <figcaption class="flex items-center justify-center space-x-3">
         <div class="text-xl space-y-0.5 font-medium dark:text-white text-left">
-          <p>Status: {{ $item->status }}</p>
-          <input type="hidden" name="status" value="0">
-          <input type="checkbox" name="status" value="1" id="status"
-            @if (old('status', $item->status ? '1' : '0') === "1")
-              checked
-            @endif
-          >
-          <label class="text-xl" for="status">Done</label>
+          @if (old('status', $item->status ? '1' : '0') === "1")
+            <label for="status">Status: 完了</label>
+          @else
+            <label for="status" class="text-red-600">Status: 未着手</label>
+          @endif
           <div class="text-sm font-light text-gray-500 dark:text-gray-400 pb-3">{{ $item->created_at }}</div>
           <a href="{{ route('task_index') }}" class="m-1 bg-yellow-100 hover:bg-yellow-200 text-blue-900 py-2 px-10 border border-blue-900 rounded-full shadow">ToDo Listへ</a>
         </div>
