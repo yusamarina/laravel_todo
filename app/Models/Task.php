@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use App\Scopes\ScopeTask;
+use Illuminate\Support\Facades\Auth;
 
 class Task extends Model
 {
@@ -28,13 +29,17 @@ class Task extends Model
 
     public function getData()
     {
-        return $this->user_id . '【status:' . $this->status . '】' . '   ' . $this->title . ' (' . $this->memo . ') ';
+        return 'user:' . $this->user_id . '【status:' . $this->status . '】' . '   ' . $this->title . ' (' . $this->memo . ') ';
     }
 
     protected static function boot()
     {
         parent::boot();
         static::addGlobalScope(new ScopeTask);
+
+        self::saving(function ($task) {
+            $task->user_id = Auth::id();
+        });
     }
 
 
