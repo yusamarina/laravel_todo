@@ -11,7 +11,6 @@ class ScopeTask implements Scope
 {
   public function apply(Builder $builder, Model $model)
   {
-    // $builder->where('status', '=', 0);
     $builder->where('user_id', '=', Auth::id());
   }
 }

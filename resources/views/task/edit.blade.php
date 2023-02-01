@@ -18,10 +18,13 @@
     <table>
       @csrf
       <input type="hidden" name="id" value="{{ $task->id }}">
-        <div class="mb-8 border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 md:mb-12 md:grid-cols-2">
-          <figure class="flex flex-col items-center justify-center p-8 text-center bg-white border-b border-gray-200 rounded-t-lg md:rounded-t-none md:rounded-tl-lg md:border-r dark:bg-gray-800 dark:border-gray-700">
+        <div class="max-w-sm w-full lg:max-w-full lg:flex justify-center text-2xl py-6 ">
+          <figure class="bg-gray-300 flex flex-col items-center justify-center p-8 text-center bg-white border-b border-gray-200 rounded-t-lg md:rounded-t-none md:rounded-tl-lg md:border-r dark:bg-gray-800 dark:border-gray-700">
+            <div class="text-sm font-light text-gray-500 dark:text-gray-900 pb-3">{{ $task->created_at }}</div>
+            <p class="text-sm text-gray-900">タスク名</p>
             <h3 class="text-lg font-semibold text-gray-900 dark:text-white"><input type="string" name="title" value="{{ $task->title }}"></h3>
-              <p class="my-4 font-light"><input type="text" name="memo" value="{{ $task->memo }}"></p>
+              <p class="text-sm text-gray-900 pt-4">メモ</p>
+              <p class="mb-4 font-light"><input type="text" name="memo" value="{{ $task->memo }}"></p>
               <select class="form-control" name="status" value="{{ $task->status }}">
                 @if (old('status', $task->status ? '1' : '0') === "1")
                   <option value={{ $task->status }}>完了</option>
@@ -31,11 +34,14 @@
                   <option value=1>完了</option>
                 @endif
               </select>
-            <figcaption class="flex items-center justify-center space-x-3">
+            <figcaption class="flex items-center justify-center space-x-3 pt-6">
               <div class="space-y-0.5 font-medium dark:text-white text-left">
-                <div class="text-sm font-light text-gray-500 dark:text-gray-400 pb-3">{{ $task->created_at }}</div>
-                <input type="submit" value="保存" class="m-1 bg-yellow-100 hover:bg-yellow-200 text-blue-900 py-2 px-4 border border-blue-900 rounded-full shadow">
-                <a href="{{ route('task_index') }}" class="m-1 bg-yellow-100 hover:bg-yellow-200 text-blue-900 py-2 px-10 border border-blue-900 rounded-full shadow">ToDo Listへ</a>
+                <div class="flex justify-center">
+                  <input type="submit" value="保存" class="text-base m-1 bg-yellow-100 hover:bg-yellow-200 text-blue-900 py-2 px-4 border border-blue-900 rounded-full shadow">
+                </div>
+                <div class="pt-6">
+                  <a href="{{ route('task_index') }}" class="m-1 bg-yellow-100 hover:bg-yellow-200 text-blue-900 py-2 px-10 border border-blue-900 rounded-full shadow">ToDo Listへ</a>
+                </div>
               </div>
             </figcaption>
           </figure>
