@@ -26,6 +26,20 @@ class TaskController extends Controller
         return view('task.index', compact('items', 'keyword'));
     }
 
+    public function done(Request $request)
+    {
+        $keyword = $request->input('keyword');
+        $query = Task::query();
+
+        if (!empty($keyword)) {
+            $query->where('title', 'LIKE', "%{$keyword}%");
+        }
+
+        $items = $query->get();
+        return view('task.done', compact('items', 'keyword'));
+    }
+
+
     public function show($id)
     {
         $item = Task::find($id);
@@ -80,7 +94,7 @@ class TaskController extends Controller
         if (is_null($task)) {
             abort(404);
         }
-        
+
         return view('task.delete', compact('task'));
     }
 
