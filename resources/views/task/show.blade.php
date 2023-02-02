@@ -13,15 +13,17 @@
           <p class="text-xl my-4 font-light">{{ $item->memo }}</p>
         <figcaption class="flex items-center justify-center space-x-3">
           <div class="text-xl space-y-0.5 font-medium dark:text-white text-left">
-            @if (old('status', $item->status ? '1' : '0') === "1")
+            @if (old('status', $item->status) === 2)
               <label for="status">Status: 完了</label>
+            @elseif (old('status', $item->status) === 1)
+              <label for="status" class="text-blue-500">Status: 進行中</label>
             @else
               <label for="status" class="text-red-600">Status: 未着手</label>
             @endif
             <a href="{{ route('task_edit', ['id'=>$item->id]) }}" class="text-base m-1 bg-yellow-100 hover:bg-yellow-200 text-blue-900 py-2 px-4 border border-blue-900 rounded-full shadow">編集</a>
             <a href="{{ route('task_delete', ['id'=>$item->id]) }}" class="text-base m-1 bg-pink-100 hover:bg-pink-200 text-blue-900 py-2 px-4 border border-blue-900 rounded-full shadow">削除</a>
           <div class="pt-6 flex justify-center">
-            @if (old('status', $item->status ? '1' : '0') === "1")
+            @if (old('status', $item->status) === 2)
               <a href="{{ route('done_task') }}" class="m-1 bg-yellow-100 hover:bg-yellow-200 text-blue-900 py-2 px-10 border border-blue-900 rounded-full shadow">Doneページへ</a>
             @else
               <a href="{{ route('task_index') }}" class="m-1 bg-yellow-100 hover:bg-yellow-200 text-blue-900 py-2 px-10 border border-blue-900 rounded-full shadow">ToDo Listへ</a>

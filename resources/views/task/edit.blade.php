@@ -31,12 +31,18 @@
               <p class="text-sm text-gray-900 pt-4">メモ</p>
               <p class="mb-4 font-light"><input type="text" name="memo" value="{{ $task->memo }}"></p>
               <select class="form-control" name="status" value="{{ $task->status }}">
-                @if (old('status', $task->status ? '1' : '0') === "1")
-                  <option value={{ $task->status }}>完了</option>
+                @if (old('status', $task->status) === 2)
+                  <option value=2>完了</option>
                   <option value=0>未着手</option>
+                  <option value=1>進行中</option>
+                @elseif (old('status', $task->status) === 1)
+                  <option value=1>進行中</option>
+                  <option value=0>未着手</option>
+                  <option value=2>完了</option>
                 @else
-                  <option value={{ $task->status }}>未着手</option>
-                  <option value=1>完了</option>
+                  <option value=0>未着手</option>
+                  <option value=1>進行中</option>
+                  <option value=2>完了</option>
                 @endif
               </select>
             <figcaption class="flex items-center justify-center space-x-3 pt-6">
@@ -45,7 +51,7 @@
                   <input type="submit" value="保存" class="text-base m-1 bg-yellow-100 hover:bg-yellow-200 text-blue-900 py-2 px-4 border border-blue-900 rounded-full shadow">
                 </div>
                 <div class="pt-6">
-                  @if (old('status', $task->status ? '1' : '0') === "1")
+                  @if (old('status', $task->status) === 2)
                     <a href="{{ route('done_task') }}" class="m-1 bg-yellow-100 hover:bg-yellow-200 text-blue-900 py-2 px-10 border border-blue-900 rounded-full shadow">Doneページへ</a>
                   @else
                     <a href="{{ route('task_index') }}" class="m-1 bg-yellow-100 hover:bg-yellow-200 text-blue-900 py-2 px-10 border border-blue-900 rounded-full shadow">ToDo Listへ</a>

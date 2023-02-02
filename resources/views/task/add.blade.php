@@ -27,7 +27,8 @@
       <tr><th class="py-3">status: </th><td>
         <select class="form-control" name="status" value="{{ old('status') }}">
           <option value=0>未着手</option>
-          <option value=1>完了</option>
+          <option value=1>進行中</option>
+          <option value=2>完了</option>
         </select>
       </td></tr>
       <tr><th></th><td><input type="submit" value="登録" class="m-1 bg-yellow-100 hover:bg-yellow-200 text-blue-900 py-2 px-4 border border-blue-900 rounded-full shadow"></td></tr>
