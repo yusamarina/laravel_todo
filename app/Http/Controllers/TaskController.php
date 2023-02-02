@@ -29,6 +29,11 @@ class TaskController extends Controller
     public function show($id)
     {
         $item = Task::find($id);
+
+        if (is_null($item)) {
+            abort(404);
+        }
+
         return view('task.show', compact('item'));
     }
 
@@ -50,6 +55,11 @@ class TaskController extends Controller
     public function edit($id)
     {
         $task = Task::find($id);
+
+        if (is_null($task)) {
+            abort(404);
+        }
+
         return view('task.edit', compact('task'));
     }
 
@@ -66,6 +76,11 @@ class TaskController extends Controller
     public function delete($id)
     {
         $task = Task::find($id);
+
+        if (is_null($task)) {
+            abort(404);
+        }
+        
         return view('task.delete', compact('task'));
     }
 
