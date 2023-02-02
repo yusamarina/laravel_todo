@@ -9,6 +9,11 @@
                         {{ __('ToDo List') }}
                     </x-nav-link>
                 </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('done_task')" :active="request()->routeIs('done_task')">
+                        {{ __('Done') }}
+                    </x-nav-link>
+                </div>
             </div>
 
             <!-- Settings Dropdown -->
