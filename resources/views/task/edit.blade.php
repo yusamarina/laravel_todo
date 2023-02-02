@@ -6,13 +6,18 @@
   </x-slot>
 
   @if (count($errors) > 0)
-  <div>
-    <ul>
-      @foreach ($errors->all() as $error)
-        <li>{{ $error }}</li>
-      @endforeach
-    </ul>
+  <div class="flex justify-center text-xl pt-6">
+    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded" role="alert">
+      <strong class="font-bold">
+        <ul>
+        @foreach ($errors->all() as $error)
+          <li>{{ $error }}</li>
+        @endforeach
+      </ul>
+      </strong>
+    </div>
   </div>
+
   @endif
   <form action="/task/edit" method="post">
     <table>
