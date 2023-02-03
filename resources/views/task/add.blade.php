@@ -22,16 +22,29 @@
   <form action="/task/add" method="post">
     <table class="flex justify-center text-xl py-6">
       @csrf
-      <tr><th class="py-3">title: </th><td><input type="string" name="title" value="{{ old('title') }}"></td></tr>
-      <tr><th class="py-3">memo: </th><td><input type="text" name="memo" value="{{ old('memo') }}"></td></tr>
-      <tr><th class="py-3">status: </th><td>
-        <select class="form-control" name="status" value="{{ old('status') }}">
-          <option value=0>未着手</option>
-          <option value=1>進行中</option>
-          <option value=2>完了</option>
-        </select>
-      </td></tr>
-      <tr><th></th><td><input type="submit" value="登録" class="m-1 bg-yellow-100 hover:bg-yellow-200 text-blue-900 py-2 px-4 border border-blue-900 rounded-full shadow"></td></tr>
+        <div class="py-6 ">
+          <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6 flex flex-col items-center justify-center">
+            <div class="p-4 sm:p-8 bg-yellow-50 shadow sm:rounded-lg">
+              <p class="text-sm text-gray-900">タスク名</p>
+              <h3 class="text-2xl font-semibold text-gray-900 dark:text-white pb-3"><input type="text" name="title" value="{{ old('title') }}"></h3>
+                <p class="text-sm text-gray-900">メモ</p>
+                <p class="font-light pb-3"><input type="text" name="memo" value="{{ old('memo') }}"></p>
+                <p class="text-sm text-gray-900">ステータス</p>
+                <select class="form-control" name="status" value="{{ old('status') }}">
+                  <option value=0>未着手</option>
+                  <option value=1>進行中</option>
+                  <option value=2>完了</option>
+                </select>
+                <figcaption class="flex items-center justify-center space-x-3 pt-6">
+                <div class="space-y-0.5 font-medium dark:text-white text-left">
+                  <div class="flex justify-center">
+                    <input type="submit" value="登録" class="m-1 bg-yellow-100 hover:bg-yellow-200 text-blue-900 py-2 px-4 border border-blue-900 rounded-full shadow">
+                  </div>
+                </div>
+              </figcaption>
+            </div>
+          </div>
+        </div>
     </table>
   </form>
 </x-app-layout>
