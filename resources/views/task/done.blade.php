@@ -23,6 +23,7 @@
     <div class="flex flex-wrap items-center justify-center">
       @forelse ($items as $item)
         @if (old('status', $item->status) === 2)
+          <a href="{{ route('task_show', ['id'=>$item->id]) }}">
             <div class="py-6 ">
               <div class="sm:px-6 lg:px-8 space-y-6">
                 <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
@@ -32,7 +33,6 @@
                   <figcaption class="flex items-center justify-center space-x-3">
                     <div class="space-y-0.5 font-medium dark:text-white text-left">
                       <label for="status">Status: 完了</label>
-                      <a href="{{ route('task_show', ['id'=>$item->id]) }}" class="text-base m-1 bg-yellow-100 hover:bg-yellow-200 text-blue-900 py-2 px-4 border border-blue-900 rounded-full shadow">詳細</a>
                       <a href="{{ route('task_edit', ['id'=>$item->id]) }}" class="text-base m-1 bg-yellow-100 hover:bg-yellow-200 text-blue-900 py-2 px-4 border border-blue-900 rounded-full shadow">編集</a>
                       <a href="{{ route('task_delete', ['id'=>$item->id]) }}" class="text-base m-1 bg-pink-100 hover:bg-pink-200 text-blue-900 py-2 px-4 border border-blue-900 rounded-full shadow">削除</a>
                     </div>
@@ -40,6 +40,7 @@
                 </div>
               </div>
             </div>
+          </a>
         @endif
       @empty
         <td class="text-xl">タスクが見つかりませんでした。</td>
