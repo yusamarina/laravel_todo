@@ -23,34 +23,63 @@
     <table>
       @csrf
       <input type="hidden" name="id" value="{{ $task->id }}">
-        <div class="max-w-sm w-full lg:max-w-full lg:flex justify-center text-2xl py-6 ">
-          <figure class="bg-gray-300 flex flex-col items-center justify-center p-8 text-center bg-white border-b border-gray-200 rounded-t-lg md:rounded-t-none md:rounded-tl-lg md:border-r dark:bg-gray-800 dark:border-gray-700">
-            <div class="text-sm font-light text-gray-500 dark:text-gray-900 pb-3">{{ $task->created_at }}</div>
-            <p class="text-sm text-gray-900">タスク名</p>
-            <h3 class="text-lg font-semibold text-gray-900 dark:text-white"><input type="string" name="title" value="{{ $task->title }}"></h3>
-              <p class="text-sm text-gray-900 pt-4">メモ</p>
-              <p class="mb-4 font-light"><input type="text" name="memo" value="{{ $task->memo }}"></p>
-              <select class="form-control" name="status" value="{{ $task->status }}">
-                @if (old('status', $task->status ? '1' : '0') === "1")
-                  <option value={{ $task->status }}>完了</option>
-                  <option value=0>未着手</option>
-                @else
-                  <option value={{ $task->status }}>未着手</option>
-                  <option value=1>完了</option>
-                @endif
-              </select>
-            <figcaption class="flex items-center justify-center space-x-3 pt-6">
-              <div class="space-y-0.5 font-medium dark:text-white text-left">
-                <div class="flex justify-center">
-                  <input type="submit" value="保存" class="text-base m-1 bg-yellow-100 hover:bg-yellow-200 text-blue-900 py-2 px-4 border border-blue-900 rounded-full shadow">
+      <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6 flex flex-col items-center justify-center">
+          @if (old('status', $task->status) === 0)
+            <div class="p-4 sm:p-8 bg-red-100 shadow sm:rounded-lg">
+          @elseif (old('status', $task->status) === 1)
+            <div class="p-4 sm:p-8 bg-blue-100 shadow sm:rounded-lg">
+          @else
+              <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
+          @endif
+            <div class="text-sm font-light text-gray-500 dark:text-gray-900 pb-3">{{ $task->created_at->format('Y/m/d') }}</div>
+              <p class="text-sm text-gray-900">タスク名</p>
+              <h3 class="text-2xl font-semibold text-gray-900 dark:text-white pb-3">
+                <div class="flex items-center border-b border-teal-500 py-2">
+                  <input type="text" name="title" value="{{ $task->title }}" class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none">
                 </div>
-                <div class="pt-6">
-                  <a href="{{ route('task_index') }}" class="m-1 bg-yellow-100 hover:bg-yellow-200 text-blue-900 py-2 px-10 border border-blue-900 rounded-full shadow">ToDo Listへ</a>
+              </h3>
+                <p class="text-sm text-gray-900">メモ</p>
+                <p class="font-light pb-3">
+                  <div class="flex items-center border-b border-teal-500 py-2">
+                    <input type="text" name="title" value="{{ $task->memo }}" class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none">
+                  </div>
+                </p>
+                <p class="text-sm text-gray-900 py-2">ステータス</p>
+                <div class="inline-block relative w-64">
+                  <select name="status" value="{{ $task->status }}" class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+                    @if (old('status', $task->status) === 2)
+                      <option value=2>完了</option>
+                      <option value=0>未着手</option>
+                      <option value=1>進行中</option>
+                    @elseif (old('status', $task->status) === 1)
+                      <option value=1>進行中</option>
+                      <option value=0>未着手</option>
+                      <option value=2>完了</option>
+                    @else
+                      <option value=0>未着手</option>
+                      <option value=1>進行中</option>
+                      <option value=2>完了</option>
+                    @endif
+                  </select>
                 </div>
-              </div>
-            </figcaption>
-          </figure>
+              <figcaption class="flex items-center justify-center space-x-3 pt-6">
+                <div class="space-y-0.5 font-medium dark:text-white text-left">
+                  <div class="flex justify-center">
+                    <input type="submit" value="保存" class="text-base m-1 bg-yellow-100 hover:bg-yellow-200 text-blue-900 py-2 px-4 border border-blue-900 rounded-full shadow">
+                  </div>
+                  <div class="pt-6">
+                    @if (old('status', $task->status) === 2)
+                      <a href="{{ route('done_task') }}" class="m-1 bg-yellow-100 hover:bg-yellow-200 text-blue-900 py-2 px-10 border border-blue-900 rounded-full shadow">Doneページへ</a>
+                    @else
+                      <a href="{{ route('task_index') }}" class="m-1 bg-yellow-100 hover:bg-yellow-200 text-blue-900 py-2 px-10 border border-blue-900 rounded-full shadow">ToDo Listへ</a>
+                    @endif
+                  </div>
+                </div>
+              </figcaption>
+          </div>
         </div>
+      </div>
     </table>
   </form>
 </x-app-layout>

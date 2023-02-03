@@ -30,6 +30,10 @@
             <main>
                 {{ $slot }}
             </main>
+            <footer class="py-6 text-center text-blue-900">
+                Illustration by <a href="https://icons8.com/illustrations/author/JTmm71Rqvb2T">Dani Grapevine</a> from <a href="https://icons8.com/illustrations">Ouch!</a>
+                <p>Copyright © 2022 ToDo App</p>
+            </footer>
         </div>
     </body>
 </html>
