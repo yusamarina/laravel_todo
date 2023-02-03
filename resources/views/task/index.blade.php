@@ -33,7 +33,7 @@
                 @elseif (old('status', $item->status) === 1)
                   <div class="p-4 sm:p-8 bg-blue-100 shadow sm:rounded-lg">
                 @endif
-                  <div class="text-sm font-light text-gray-500 dark:text-gray-400 pb-3">{{ $item->created_at }}</div>
+                  <div class="text-sm font-light text-gray-500 dark:text-gray-400 pb-3">{{ $item->created_at->format('Y/m/d') }}</div>
                     <h3 class="text-2xl font-semibold text-gray-900 dark:text-white">{{ $item->title }}</h3>
                       <p class="text-base my-4 font-light">{{ $item->memo }}</p>
                   <figcaption class="flex items-center justify-center space-x-3">
