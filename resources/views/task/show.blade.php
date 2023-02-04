@@ -39,9 +39,15 @@
                     </div>
                   </div>
                   <div class="min-w-0 px-6 items-center">
-                    <p class="text-base font-medium text-gray-900 truncate dark:text-white">
-                      {{ $item->title }}
-                    </p>
+                    @if (old('status', $item->status) !== 2)
+                      <p class="text-base font-medium text-gray-900 truncate dark:text-white">
+                        {{ $item->title }}
+                      </p>
+                    @else
+                      <p class="line-through decoration-gray-500 text-base font-medium text-gray-900 truncate dark:text-white">
+                        {{ $item->title }}
+                      </p>
+                    @endif
                     <p class="text-sm text-gray-500 truncate dark:text-gray-400">
                       {{ $item->memo }}
                     </p>
