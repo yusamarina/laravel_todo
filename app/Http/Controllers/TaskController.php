@@ -20,7 +20,8 @@ class TaskController extends Controller
         $query = Task::query();
 
         if (!empty($keyword)) {
-            $query->where('title', 'LIKE', "%{$keyword}%");
+            $escape_word = addcslashes($keyword, '\\_%');
+            $query->where('title', 'LIKE', "%{$escape_word}%");
         }
 
         if (!empty($sort)) {
@@ -53,7 +54,7 @@ class TaskController extends Controller
                 $items = Task::orderBy('created_at')->get();
             } elseif ($sort === '1') {
                 $items = Task::orderBy('created_at', 'DESC')->get();
-            } 
+            }
         } else {
             $items = $query->get();
         }
