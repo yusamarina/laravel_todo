@@ -22,9 +22,9 @@
   <form action="/task/add" method="post">
     <table class="flex justify-center text-xl">
       @csrf
-        <div class="py-6">
-          <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6 flex flex-col items-center justify-center">
-            <div class="p-4 sm:p-8 bg-yellow-50 shadow sm:rounded-lg">
+        <div class="py-6 flex items-center justify-center">
+          <div class="w-full max-w-2xl p-4 bg-yellow-50 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
+            <div class="p-4">
               <p class="text-sm text-gray-900">タスク名</p>
               <h3 class="text-2xl font-semibold text-gray-900 dark:text-white">
                 <div class="flex items-center border-b border-teal-500 pt-3">
