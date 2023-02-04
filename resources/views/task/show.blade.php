@@ -39,6 +39,21 @@
                     </div>
                   </div>
                   <div class="min-w-0 px-6 items-center">
+                    @if ($item->deadline)
+                      @if (old('status', $item->status) !== 2)
+                        <div class="text-sm font-light text-teal-500 dark:text-gray-400 pb-3">
+                          期限：{{ $item->deadline }}
+                        </div>
+                      @else
+                        <div class="text-sm font-light text-gray-500 dark:text-gray-400 pb-3">
+                          期限：{{ $item->deadline }}
+                        </div>
+                      @endif
+                    @else
+                      <div class="text-sm font-light text-gray-500 dark:text-gray-400 pb-3">
+                        期限：設定なし
+                      </div>
+                    @endif
                     @if (old('status', $item->status) !== 2)
                       <p class="text-base font-medium text-gray-900 truncate dark:text-white">
                         {{ $item->title }}
@@ -51,9 +66,15 @@
                     <p class="text-sm text-gray-500 truncate dark:text-gray-400">
                       {{ $item->memo }}
                     </p>
-                    <div class="text-sm font-light text-gray-500 dark:text-gray-400 pt-3">
-                      期限：{{ $item->deadline }}
-                    </div>
+                    @if ($item->tags()->exists())
+                      <div class="flex">
+                        @foreach ($item->tags as $tag)
+                          <p class="text-sm text-teal-500 truncate dark:text-gray-400 pt-3 pr-3">
+                            # {{$tag->name}}
+                          </p>
+                        @endforeach
+                      </div>
+                    @endif
                   </div>
                 </div>
               </div>
