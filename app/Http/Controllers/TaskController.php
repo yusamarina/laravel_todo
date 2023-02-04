@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Redis;
 use Termwind\Components\Raw;
 use Validator;
 use App\Models\Task;
+use App\Models\Tag;
 use Illuminate\View\View;
 
 class TaskController extends Controller
@@ -82,31 +83,66 @@ class TaskController extends Controller
     public function create(Request $request)
     {
         $this->validate($request, Task::$rules);
+        $this->validate($request, Tag::$rules);
         $task = new Task;
         $form = $request->all();
         unset($form['_token']);
         $task->fill($form)->save();
+
+        $input_tag = $request->get('tag');
+        if (isset($input_tag)) {
+            $tag_ids = [];
+            $tags = explode('、', $input_tag);
+            foreach ($tags as $tag) {
+                $tag = Tag::updateOrCreate(
+                    [
+                        'name' => $tag,
+                    ]
+                );
+                $tag_ids[] = $tag->id;
+            }
+            $task->tags()->sync($tag_ids);
+        }
+
         return redirect('/task');
     }
 
     public function edit($id)
     {
         $task = Task::find($id);
+        $tags = $task->tags->pluck('name')->toArray();
 
         if (is_null($task)) {
             abort(404);
         }
 
-        return view('task.edit', compact('task'));
+        return view('task.edit', compact('task'), ['tag' => !empty($tags) ? implode('、', $tags) : null,]);
     }
 
     public function update(Request $request)
     {
         $this->validate($request, Task::$rules);
+        $this->validate($request, Tag::$rules);
         $task = Task::find($request->id);
         $form = $request->all();
         unset($form['_token']);
         $task->fill($form)->save();
+
+        $input_tag = $request->get('tag');
+        if (isset($input_tag)) {
+            $tag_ids = [];
+            $tags = explode('、', $input_tag);
+            foreach ($tags as $tag) {
+                $tag = Tag::updateOrCreate(
+                    [
+                        'name' => $tag,
+                    ]
+                );
+                $tag_ids[] = $tag->id;
+            }
+            $task->tags()->sync($tag_ids);
+        }
+
         return redirect('/task');
     }
 

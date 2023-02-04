@@ -55,9 +55,15 @@
                 @endif
               </select>
             </div>
+            <p class="text-sm text-gray-900 pt-9">タグ</p>
+
+            <div class="flex items-center border-b border-teal-500 pt-3">
+              <input type="text" name="tag" value="{{ old('tag', $tag ?? null) }}" class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none">
+            </div>
+
             <p class="text-sm text-gray-900 pt-9">期限</p>
             <div class="flex items-center border-b border-teal-500 pt-3">
-              <input type="date" name="deadline" value="{{ $task->deadline }}" class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" placeholder="玄関掃除をする。">
+              <input type="date" name="deadline" value="{{ $task->deadline }}" class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none">
             </div>
           <figcaption class="flex items-center justify-center space-x-3 pt-6">
             <div class="space-y-0.5 font-medium dark:text-white text-left">
