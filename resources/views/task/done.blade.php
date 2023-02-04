@@ -57,9 +57,13 @@
                         </div>
                       </div>
                       <div class="inline-flex items-center text-base font-medium text-gray-900 dark:text-white text-right">
-                        <div class="text-right">
+                        <div class="text-right flex justify-center">
                           <a href="{{ route('task_edit', ['id'=>$item->id]) }}" class="text-base flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded">編集</a>
-                          <a href="{{ route('task_delete', ['id'=>$item->id]) }}" class="text-base flex-shrink-0 bg-transparent hover:bg-pink-700 border-transparent hover:border-pink-700 text-sm border-4 text-teal-500 hover:text-white py-1 px-2 rounded">削除</a>
+                          <form action="/task/delete" method="post" onsubmit="return confirm('削除してもよろしいですか？')">
+                            @csrf
+                            <input type="hidden" name="id" value="{{ $item->id }}">
+                            <input type="submit" value="削除" class="text-base flex-shrink-0 bg-transparent hover:bg-pink-700 border-transparent hover:border-pink-700 text-sm border-4 text-teal-500 hover:text-white py-1 px-2 rounded">
+                          </form>
                         </div>
                       </div>
                     </div>
