@@ -14,6 +14,20 @@
     </form>
   </div>
 
+  <div class="flex justify-center text-xl pt-6">
+    <form action="{{route('task_index')}}">
+      <button type="submit" name="sort" value="0" class="flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded">
+        作成日順
+      </button>
+      <button type="submit" name="sort" value="1" class="flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded">
+        作成日が新しい順
+      </button>
+      <button type="submit" name="sort" value="2" class="flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded">
+        ステータス順
+      </button>
+    </form>
+  </div>
+
   <table class="flex justify-center text-xl">
     <div class="flex justify-center text-xl py-12">
       <button class="text-base flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded">

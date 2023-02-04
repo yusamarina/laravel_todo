@@ -16,26 +16,48 @@ class TaskController extends Controller
     public function index (Request $request)
     {
         $keyword = $request->input('keyword');
+        $sort = $request->get('sort');
         $query = Task::query();
 
         if (!empty($keyword)) {
             $query->where('title', 'LIKE', "%{$keyword}%");
         }
 
-        $items = $query->get();
-        return view('task.index', compact('items', 'keyword'));
+        if (!empty($sort)) {
+            if ($sort === '0') {
+                $items = Task::orderBy('created_at')->get();
+            } elseif ($sort === '1') {
+                $items = Task::orderBy('created_at', 'DESC')->get();
+            } elseif ($sort === '2') {
+                $items = Task::orderBy('status')->get();
+            }
+        } else {
+            $items = $query->get();
+        }
+
+        return view('task.index', compact('items', 'keyword', 'sort'));
     }
 
     public function done(Request $request)
     {
         $keyword = $request->input('keyword');
+        $sort = $request->get('sort');
         $query = Task::query();
 
         if (!empty($keyword)) {
             $query->where('title', 'LIKE', "%{$keyword}%");
         }
 
-        $items = $query->get();
+        if (!empty($sort)) {
+            if ($sort === '0') {
+                $items = Task::orderBy('created_at')->get();
+            } elseif ($sort === '1') {
+                $items = Task::orderBy('created_at', 'DESC')->get();
+            } 
+        } else {
+            $items = $query->get();
+        }
+
         return view('task.done', compact('items', 'keyword'));
     }
 
