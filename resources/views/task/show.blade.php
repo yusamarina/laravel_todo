@@ -66,6 +66,15 @@
                     <p class="text-sm text-gray-500 truncate dark:text-gray-400">
                       {{ $item->memo }}
                     </p>
+                    @if ($item->tags()->exists())
+                      <div class="flex">
+                        @foreach ($item->tags as $tag)
+                          <p class="text-sm text-teal-500 truncate dark:text-gray-400 pt-3 pr-3">
+                            # {{$tag->name}}
+                          </p>
+                        @endforeach
+                      </div>
+                    @endif
                   </div>
                 </div>
               </div>

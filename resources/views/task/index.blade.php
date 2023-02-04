@@ -39,7 +39,7 @@
       <div class="w-full max-w-2xl p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
         <div class="flex items-center justify-between mb-4">
           <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white">ToDo List</h5>
-          <a href="{{ route('task_index') }}" class="text-sm font-medium text-blue-600 hover:underline dark:text-blue-500">
+          <a href="{{ route('task_index') }}" class="text-sm font-medium text-teal-500 hover:underline dark:text-blue-500">
             View all
         </a>
         </div>
@@ -55,9 +55,9 @@
                         <img src="{{ asset('img/todo.png') }}" class="w-8 h-8 rounded-full" alt="image">
                         <div class="text-sm font-light pb-3">
                           @if (old('status', $item->status) === 0)
-                            <label for="status" class="text-red-600 font-semibold">未着手</label>
+                            <label for="status" class="text-red-500 font-semibold">未着手</label>
                           @elseif (old('status', $item->status) === 1)
-                            <label for="status" class="text-blue-600 font-semibold">進行中</label>
+                            <label for="status" class="text-blue-500 font-semibold">進行中</label>
                           @endif
                         </div>
                       </div>
@@ -65,7 +65,7 @@
                     <a href="{{ route('task_show', ['id'=>$item->id]) }}" class="hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500">
                       <div class="min-w-0 px-6 items-center">
                         @if ($item->deadline)
-                          <div class="text-sm font-light text-teal-500 dark:text-gray-400 pb-3">
+                          <div class="text-sm font-light text-red-500 dark:text-gray-400 pb-3">
                             期限：{{ $item->deadline }}
                           </div>
                         @endif
@@ -73,9 +73,18 @@
                           {{ $item->title }}
                         </p>
                         @if ($item->memo)
-                          <p class="text-sm text-gray-500 truncate dark:text-gray-400">
+                          <p class="text-sm text-gray-900 truncate dark:text-gray-400">
                             {{ $item->memo }}
                           </p>
+                        @endif
+                        @if ($item->tags()->exists())
+                          <div class="flex">
+                            @foreach ($item->tags as $tag)
+                              <p class="text-sm text-teal-500 truncate dark:text-gray-400 pt-3 pr-3">
+                                # {{$tag->name}}
+                              </p>
+                            @endforeach
+                          </div>
                         @endif
                       </div>
                     </a>
