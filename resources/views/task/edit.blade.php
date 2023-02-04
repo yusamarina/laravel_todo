@@ -42,7 +42,7 @@
                 <p class="text-sm text-gray-900">メモ</p>
                 <p class="font-light pb-3">
                   <div class="flex items-center border-b border-teal-500 py-2">
-                    <input type="text" name="title" value="{{ $task->memo }}" class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none">
+                    <input type="text" name="memo" value="{{ $task->memo }}" class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none">
                   </div>
                 </p>
                 <p class="text-sm text-gray-900 py-2">ステータス</p>
@@ -66,13 +66,17 @@
               <figcaption class="flex items-center justify-center space-x-3 pt-6">
                 <div class="space-y-0.5 font-medium dark:text-white text-left">
                   <div class="flex justify-center">
-                    <input type="submit" value="保存" class="text-base m-1 bg-yellow-100 hover:bg-yellow-200 text-blue-900 py-2 px-4 border border-blue-900 rounded-full shadow">
+                    <input type="submit" value="保存" class="text-base flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded">
                   </div>
                   <div class="pt-6">
                     @if (old('status', $task->status) === 2)
-                      <a href="{{ route('done_task') }}" class="m-1 bg-yellow-100 hover:bg-yellow-200 text-blue-900 py-2 px-10 border border-blue-900 rounded-full shadow">Doneページへ</a>
+                      <a href="{{ route('done_task') }}" class="text-sm font-medium text-blue-600 hover:underline dark:text-blue-500">
+                        完了したタスク一覧へ
+                      </a>
                     @else
-                      <a href="{{ route('task_index') }}" class="m-1 bg-yellow-100 hover:bg-yellow-200 text-blue-900 py-2 px-10 border border-blue-900 rounded-full shadow">ToDo Listへ</a>
+                      <a href="{{ route('done_task') }}" class="text-sm font-medium text-blue-600 hover:underline dark:text-blue-500">
+                        ToDo Listへ
+                      </a>
                     @endif
                   </div>
                 </div>
