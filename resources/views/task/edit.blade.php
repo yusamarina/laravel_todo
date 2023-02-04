@@ -34,19 +34,19 @@
           @endif
             <div class="text-sm font-light text-gray-500 dark:text-gray-900 pb-3">{{ $task->created_at->format('Y/m/d') }}</div>
               <p class="text-sm text-gray-900">タスク名</p>
-              <h3 class="text-2xl font-semibold text-gray-900 dark:text-white pb-3">
-                <div class="flex items-center border-b border-teal-500 py-2">
+              <h3 class="text-2xl font-semibold text-gray-900 dark:text-white">
+                <div class="flex items-center border-b border-teal-500 pt-3">
                   <input type="text" name="title" value="{{ $task->title }}" class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none">
                 </div>
               </h3>
-                <p class="text-sm text-gray-900">メモ</p>
-                <p class="font-light pb-3">
-                  <div class="flex items-center border-b border-teal-500 py-2">
+                <p class="text-sm text-gray-900 pt-9">メモ</p>
+                <p class="font-light">
+                  <div class="flex items-center border-b border-teal-500 pt-3">
                     <input type="text" name="memo" value="{{ $task->memo }}" class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none">
                   </div>
                 </p>
-                <p class="text-sm text-gray-900 py-2">ステータス</p>
-                <div class="inline-block relative w-64">
+                <p class="text-sm text-gray-900 pt-9">ステータス</p>
+                <div class="inline-block relative w-64 pt-3">
                   <select name="status" value="{{ $task->status }}" class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
                     @if (old('status', $task->status) === 2)
                       <option value=2>完了</option>
@@ -62,6 +62,10 @@
                       <option value=2>完了</option>
                     @endif
                   </select>
+                </div>
+                <p class="text-sm text-gray-900 pt-9">期限</p>
+                <div class="flex items-center border-b border-teal-500 pt-3">
+                  <input type="date" name="deadline" value="{{ $task->deadline }}" class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" placeholder="玄関掃除をする。">
                 </div>
               <figcaption class="flex items-center justify-center space-x-3 pt-6">
                 <div class="space-y-0.5 font-medium dark:text-white text-left">
