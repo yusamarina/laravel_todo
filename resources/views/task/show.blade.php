@@ -7,7 +7,7 @@
 
   <table>
     <div class="flex items-center justify-center pt-12">
-      <div class="w-full max-w-md p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
+      <div class="w-full max-w-2xl p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
         <div class="flex items-center justify-between mb-4">
           <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white">ToDo</h5>
           @if (old('status', $item->status) === 2)
@@ -39,17 +39,25 @@
                     </div>
                   </div>
                   <div class="min-w-0 px-6 items-center">
-                    <p class="text-base font-medium text-gray-900 truncate dark:text-white">
-                      {{ $item->title }}
-                    </p>
+                    @if (old('status', $item->status) !== 2)
+                      <p class="text-base font-medium text-gray-900 truncate dark:text-white">
+                        {{ $item->title }}
+                      </p>
+                    @else
+                      <p class="line-through decoration-gray-500 text-base font-medium text-gray-900 truncate dark:text-white">
+                        {{ $item->title }}
+                      </p>
+                    @endif
                     <p class="text-sm text-gray-500 truncate dark:text-gray-400">
                       {{ $item->memo }}
                     </p>
-                    <div class="text-sm font-light text-gray-500 dark:text-gray-400">
-                      {{ $item->created_at->format('Y/m/d') }}
+                    <div class="text-sm font-light text-gray-500 dark:text-gray-400 pt-3">
+                      期限：{{ $item->deadline }}
                     </div>
                   </div>
                 </div>
+              </div>
+              <div class="flex justify-end">
                 <div class="inline-flex items-center text-base font-medium text-gray-900 dark:text-white text-right">
                   <div class="text-right flex justify-center">
                     <a href="{{ route('task_edit', ['id'=>$item->id]) }}" class="text-base flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded">編集</a>

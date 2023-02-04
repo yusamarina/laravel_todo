@@ -28,7 +28,7 @@ class TaskController extends Controller
             if ($sort === '0') {
                 $items = Task::orderBy('created_at')->get();
             } elseif ($sort === '1') {
-                $items = Task::orderBy('created_at', 'DESC')->get();
+                $items = Task::orderByRaw('deadline is null asc')->orderBy('deadline')->get();
             } elseif ($sort === '2') {
                 $items = Task::orderBy('status')->get();
             }
@@ -53,7 +53,7 @@ class TaskController extends Controller
             if ($sort === '0') {
                 $items = Task::orderBy('created_at')->get();
             } elseif ($sort === '1') {
-                $items = Task::orderBy('created_at', 'DESC')->get();
+                $items = Task::orderByRaw('deadline is null asc')->orderBy('deadline')->get();
             }
         } else {
             $items = $query->get();
