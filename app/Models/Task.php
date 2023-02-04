@@ -49,6 +49,11 @@ class Task extends Model
         return $this->belongsTo('App\Models\User');
     }
 
+    public function tags()
+    {
+        return $this->belongsToMany('App\Models\Tag')->withTimestamps();
+    }
+
     public function scopeTitleEqual($query, $str)
     {
         return $query->where('title', $str);
