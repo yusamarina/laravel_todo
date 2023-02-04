@@ -28,12 +28,12 @@
               <p class="text-sm text-gray-900">タスク名</p>
               <h3 class="text-2xl font-semibold text-gray-900 dark:text-white">
                 <div class="flex items-center border-b border-teal-500 pt-3">
-                  <input type="text" name="title" value="{{ old('title') }}" class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" placeholder="掃除">
+                  <input type="text" name="title" value="{{ old('title') }}" class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" placeholder="例：掃除">
                 </div>
               </h3>
               <p class="text-sm text-gray-900 pt-9">メモ</p>
               <div class="flex items-center border-b border-teal-500 pt-3">
-                <input type="text" name="memo" value="{{ old('memo') }}" class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" placeholder="玄関掃除をする。">
+                <input type="text" name="memo" value="{{ old('memo') }}" class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" placeholder="例：玄関掃除をする。">
               </div>
               <p class="text-sm text-gray-900 pt-9">ステータス</p>
               <div class="inline-block relative w-64 pt-3">
@@ -51,6 +51,11 @@
                 <div class="space-y-0.5 font-medium dark:text-white text-left">
                   <div class="flex justify-center">
                     <input type="submit" value="登録" class="flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded" type="button">
+                  </div>
+                  <div class="pt-6">
+                    <a href="{{ route('task_index') }}" class="text-sm font-medium text-blue-600 hover:underline dark:text-blue-500">
+                      ToDo Listへ
+                    </a>
                   </div>
                 </div>
               </figcaption>
