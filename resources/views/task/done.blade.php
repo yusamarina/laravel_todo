@@ -56,18 +56,18 @@
                       </div>
                       <a href="{{ route('task_show', ['id'=>$item->id]) }}" class="hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500">
                         <div class="min-w-0 px-6 items-center">
-                          <p class="line-through decoration-gray-500 text-base font-medium text-gray-900 truncate dark:text-white">
+                          @if ($item->deadline)
+                            <div class="text-sm font-light text-gray-500 dark:text-gray-400 pb-3">
+                              期限：{{ $item->deadline }}
+                            </div>
+                          @endif
+                          <p class="line-through decoration-gray-500 text-base font-semibold text-gray-900 truncate dark:text-white">
                             {{ $item->title }}
                           </p>
                           @if ($item->memo)
                             <p class="text-sm text-gray-500 truncate dark:text-gray-400">
                               {{ $item->memo }}
                             </p>
-                          @endif
-                          @if ($item->deadline)
-                            <div class="text-sm font-light text-gray-500 dark:text-gray-400 pt-3">
-                              期限：{{ $item->deadline }}
-                            </div>
                           @endif
                         </div>
                       </a>
