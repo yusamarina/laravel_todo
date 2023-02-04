@@ -20,9 +20,9 @@
 
   @endif
   <form action="/task/add" method="post">
-    <table class="flex justify-center text-xl py-6">
+    <table class="flex justify-center text-xl">
       @csrf
-        <div class="py-6 ">
+        <div class="py-6">
           <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6 flex flex-col items-center justify-center">
             <div class="p-4 sm:p-8 bg-yellow-50 shadow sm:rounded-lg">
               <p class="text-sm text-gray-900">タスク名</p>

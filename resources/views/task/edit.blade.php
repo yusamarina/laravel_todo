@@ -6,7 +6,7 @@
   </x-slot>
 
   @if (count($errors) > 0)
-  <div class="flex justify-center text-xl pt-6">
+  <div class="flex justify-center text-base pt-6">
     <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded" role="alert">
       <strong class="font-bold">
         <ul>
@@ -23,7 +23,7 @@
     <table>
       @csrf
       <input type="hidden" name="id" value="{{ $task->id }}">
-      <div class="py-12">
+      <div class="py-6">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6 flex flex-col items-center justify-center">
           @if (old('status', $task->status) === 0)
             <div class="p-4 sm:p-8 bg-red-100 shadow sm:rounded-lg">
@@ -67,6 +67,8 @@
                 <div class="flex items-center border-b border-teal-500 pt-3">
                   <input type="date" name="deadline" value="{{ $task->deadline }}" class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" placeholder="玄関掃除をする。">
                 </div>
+              </div>
+            </div>
               <figcaption class="flex items-center justify-center space-x-3 pt-6">
                 <div class="space-y-0.5 font-medium dark:text-white text-left">
                   <div class="flex justify-center">
