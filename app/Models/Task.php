@@ -19,6 +19,7 @@ class Task extends Model
         'title',
         'memo',
         'status',
+        'deadline',
     ];
 
     protected $guarded = array('id');
