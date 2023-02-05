@@ -17,12 +17,20 @@ class TaskController extends Controller
     public function index (Request $request)
     {
         $keyword = $request->input('keyword');
+        $tag_keyword = $request->input('tag_keyword');
         $sort = $request->get('sort');
         $query = Task::query();
 
         if (!empty($keyword)) {
             $escape_word = addcslashes($keyword, '\\_%');
             $query->where('title', 'LIKE', "%{$escape_word}%");
+        }
+
+        if (!empty($tag_keyword)) {
+            $escape_word = addcslashes($tag_keyword, '\\_%');
+            $query->whereHas('tags', function ($query) use ($escape_word) {
+                $query->where('name', 'LIKE', "%{$escape_word}%");
+            });
         }
 
         if (!empty($sort)) {
@@ -37,17 +45,25 @@ class TaskController extends Controller
             $items = $query->get();
         }
 
-        return view('task.index', compact('items', 'keyword', 'sort'));
+        return view('task.index', compact('items', 'keyword', 'sort', 'tag_keyword'));
     }
 
     public function done(Request $request)
     {
         $keyword = $request->input('keyword');
+        $tag_keyword = $request->input('tag_keyword');
         $sort = $request->get('sort');
         $query = Task::query();
 
         if (!empty($keyword)) {
             $query->where('title', 'LIKE', "%{$keyword}%");
+        }
+
+        if (!empty($tag_keyword)) {
+            $escape_word = addcslashes($tag_keyword, '\\_%');
+            $query->whereHas('tags', function ($query) use ($escape_word) {
+                $query->where('name', 'LIKE', "%{$escape_word}%");
+            });
         }
 
         if (!empty($sort)) {
@@ -60,7 +76,7 @@ class TaskController extends Controller
             $items = $query->get();
         }
 
-        return view('task.done', compact('items', 'keyword'));
+        return view('task.done', compact('items', 'keyword', 'tag_keyword'));
     }
 
 
