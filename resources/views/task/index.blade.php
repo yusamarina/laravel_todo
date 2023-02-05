@@ -1,10 +1,4 @@
 <x-app-layout>
-  <x-slot name="header">
-      <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-          {{ __('ToDo List') }}
-      </h2>
-  </x-slot>
-
   <div class="flex justify-center text-xl pt-6">
     <form action="{{ route('task_index') }}" method="GET">
       <div class="flex items-center border-b border-teal-700">

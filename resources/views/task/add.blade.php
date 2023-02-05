@@ -1,10 +1,4 @@
 <x-app-layout>
-  <x-slot name="header">
-      <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-          {{ __('New ToDo') }}
-      </h2>
-  </x-slot>
-
   @if (count($errors) > 0)
     <div class="flex justify-center text-base pt-6">
       <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded" role="alert">
