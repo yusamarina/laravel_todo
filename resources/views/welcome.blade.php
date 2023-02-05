@@ -19,14 +19,16 @@
                 font-family: 'Nunito', sans-serif;
             }
         </style>
+
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="antialiased">
-        <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
+        <div class="relative flex items-top justify-center min-h-screen bg-rose-50 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
             <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
                 <div class="flex justify-center pt-8 sm:justify-start sm:pt-0">
                     <div>
-                        <h1>ToDo App</h1>
-                        <p>タスクの管理をしましょう！</p>
+                        <h1 class="text-3xl font-semibold text-indigo-900">ToDo App</h1>
+                        <p class="text-gray-600">ToDo Appでタスクの管理をしましょう！</p>
                     </div>
                 </div>
                 <div class="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
@@ -35,8 +37,8 @@
                             @if (Route::has('login'))
                                 @auth
                                     <div class="flex items-center">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-gray-500"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" /></svg>
-                                        <div class="ml-4 text-lg leading-7 font-semibold"><a href="{{ url('/task') }}" class="underline text-gray-900 dark:text-white">ToDo List</a></div>
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-indigo-900"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" /></svg>
+                                        <div class="ml-4 text-lg leading-7 font-semibold"><a href="{{ url('/task') }}" class="underline text-indigo-900 dark:text-white">ToDo List</a></div>
                                     </div>
                                     <div class="ml-12">
                                         <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
@@ -45,7 +47,7 @@
                                     </div>
                                 @else
                                     <div class="ml-4 text-lg leading-7 font-semibold">
-                                        <a href="{{ route('login') }}" class="text-3xl text-gray-700 dark:text-gray-500 underline">Log in</a>
+                                        <a href="{{ route('login') }}" class="text-lg text-indigo-900 underline">Log in</a>
                                     </div>
                                     <div class="ml-12">
                                         <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
@@ -54,7 +56,7 @@
                                     </div>
                                     @if (Route::has('register'))
                                         <div class="ml-4 text-lg leading-7 font-semibold">
-                                            <a href="{{ route('register') }}" class="text-3xl text-gray-700 dark:text-gray-500 underline">Register</a>
+                                            <a href="{{ route('register') }}" class="text-lg text-indigo-900 dark:text-gray-500 underline">Register</a>
                                         </div>
                                         <div class="ml-12">
                                             <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
@@ -70,9 +72,10 @@
                     </div>
                 </div>
 
-                <div class="flex justify-center mt-4 sm:items-center sm:justify-between">
-                    <div class="ml-4 text-center text-sm text-gray-500 sm:text-right sm:ml-0">
-                        Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})
+                <div class="mt-6">
+                    <div class="py-6 text-center text-indigo-900">
+                        Illustration by <a href="https://icons8.com/illustrations/author/A7iGlOUD5Neq">dekob2</a> from <a href="https://icons8.com/illustrations">Ouch!</a>
+                        <p>Copyright © 2022 ToDo App</p>
                     </div>
                 </div>
             </div>
