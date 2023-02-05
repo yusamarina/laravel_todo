@@ -1,10 +1,4 @@
 <x-app-layout>
-  <x-slot name="header">
-      <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-          {{ __('Done') }}
-      </h2>
-  </x-slot>
-
   <div class="flex justify-center text-xl pt-6">
     <form action="{{ route('done_task') }}" method="GET">
       <div class="flex items-center border-b border-teal-700">
@@ -69,7 +63,7 @@
                             {{ $item->title }}
                           </p>
                           @if ($item->memo)
-                            <p class="text-sm text-gray-500 truncate dark:text-gray-400">
+                            <p class="line-through decoration-gray-500 text-sm text-gray-500 truncate dark:text-gray-400">
                               {{ $item->memo }}
                             </p>
                           @endif

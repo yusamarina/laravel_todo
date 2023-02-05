@@ -1,10 +1,4 @@
 <x-app-layout>
-  <x-slot name="header">
-      <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-          {{ __('ToDo') }}
-      </h2>
-  </x-slot>
-
   <table>
     <div class="flex items-center justify-center pt-12">
       <div class="w-full max-w-2xl p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
@@ -61,17 +55,21 @@
                       </div>
                     @endif
                     @if (old('status', $item->status) !== 2)
-                      <p class="text-base font-medium text-gray-900 truncate dark:text-white">
+                      <p class="text-base font-semibold text-gray-900 truncate dark:text-white">
                         {{ $item->title }}
+                      </p>
+                      <p class="text-sm text-gray-500 truncate dark:text-gray-400">
+                        {{ $item->memo }}
                       </p>
                     @else
-                      <p class="line-through decoration-gray-500 text-base font-medium text-gray-900 truncate dark:text-white">
+                      <p class="line-through decoration-gray-500 text-base font-semibold text-gray-900 truncate dark:text-white">
                         {{ $item->title }}
                       </p>
+                      <p class="line-through decoration-gray-500 text-sm text-gray-500 truncate dark:text-gray-400">
+                        {{ $item->memo }}
+                      </p>
                     @endif
-                    <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                      {{ $item->memo }}
-                    </p>
+
                     @if ($item->tags()->exists())
                       <div class="flex">
                         @foreach ($item->tags as $tag)
