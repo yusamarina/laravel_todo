@@ -11,11 +11,11 @@
         <div class="flex items-center justify-between mb-4">
           <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white">ToDo</h5>
           @if (old('status', $item->status) === 2)
-            <a href="{{ route('done_task') }}" class="text-sm font-medium text-blue-600 hover:underline dark:text-blue-500">
+            <a href="{{ route('done_task') }}" class="text-sm font-medium text-blue-900 hover:underline">
               完了したタスク一覧へ
             </a>
           @else
-            <a href="{{ route('task_index') }}" class="text-sm font-medium text-blue-600 hover:underline dark:text-blue-500">
+            <a href="{{ route('task_index') }}" class="text-sm font-medium text-blue-900 hover:underline">
               ToDo Listへ
             </a>
           @endif
@@ -27,21 +27,27 @@
               <div class="flex items-center space-x-4">
                 <div class="flex items-center justify-center">
                   <div class="flex-shrink-0 px-6">
-                    <img src="{{ asset('img/todo.png') }}" class="w-8 h-8 rounded-full" alt="image">
-                    <div class="text-sm font-light pb-3">
-                      @if (old('status', $item->status) === 0)
-                        <label for="status" class="text-red-600 font-semibold">未着手</label>
-                      @elseif (old('status', $item->status) === 1)
-                        <label for="status" class="text-blue-600 font-semibold">進行中</label>
-                      @else
+                    @if (old('status', $item->status) === 0)
+                      <img src="{{ asset('img/not_started.png') }}" class="h-9" alt="image">
+                      <div class="text-sm font-light py-3 flex items-center justify-center">
+                        <label for="status" class="text-rose-400 font-semibold">未着手</label>
+                      </div>
+                    @elseif (old('status', $item->status) === 1)
+                      <img src="{{ asset('img/progression.png') }}" class="h-9" alt="image">
+                      <div class="text-sm font-light py-3 flex items-center justify-center">
+                        <label for="status" class="text-teal-500 font-semibold">進行中</label>
+                      </div>
+                    @else
+                      <img src="{{ asset('img/todo.png') }}" class="h-12" alt="image">
+                      <div class="text-sm font-light py-3 flex items-center justify-center">
                         <label for="status" class="font-semibold">完了</label>
-                      @endif
-                    </div>
+                      </div>
+                    @endif
                   </div>
                   <div class="min-w-0 px-6 items-center">
                     @if ($item->deadline)
                       @if (old('status', $item->status) !== 2)
-                        <div class="text-sm font-light text-teal-500 dark:text-gray-400 pb-3">
+                        <div class="text-sm font-light text-rose-400 dark:text-gray-400 pb-3">
                           期限：{{ $item->deadline }}
                         </div>
                       @else
@@ -81,11 +87,11 @@
               <div class="flex justify-end">
                 <div class="inline-flex items-center text-base font-medium text-gray-900 dark:text-white text-right">
                   <div class="text-right flex justify-center">
-                    <a href="{{ route('task_edit', ['id'=>$item->id]) }}" class="text-base flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded">編集</a>
+                    <a href="{{ route('task_edit', ['id'=>$item->id]) }}" class="flex-shrink-0 font-semibold bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-white text-base border-4 py-1 px-2 rounded">編集</a>
                     <form action="/task/delete" method="post" onsubmit="return confirm('削除してもよろしいですか？')">
                       @csrf
                         <input type="hidden" name="id" value="{{ $item->id }}">
-                        <input type="submit" value="削除" class="text-base flex-shrink-0 bg-transparent hover:bg-pink-700 border-transparent hover:border-pink-700 text-sm border-4 text-teal-500 hover:text-white py-1 px-2 rounded">
+                        <input type="submit" value="削除" class="text-base flex-shrink-0 bg-transparent hover:bg-rose-700 border-transparent hover:border-rose-700 border-4 text-teal-500 font-semibold hover:text-white py-1 px-2 rounded">
                     </form>
                   </div>
                 </div>
