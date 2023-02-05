@@ -57,7 +57,7 @@
                     <input type="submit" value="登録" class="flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded" type="button">
                   </div>
                   <div class="pt-6">
-                    <a href="{{ route('task_index') }}" class="text-sm font-medium text-blue-600 hover:underline dark:text-blue-500">
+                    <a href="{{ route('task_index') }}" class="text-sm font-medium text-blue-900 hover:underline">
                       ToDo Listへ
                     </a>
                   </div>
