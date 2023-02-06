@@ -41,7 +41,6 @@
             View all
         </a>
         </div>
-
         <div class="flow-root">
           <ul role="list" class="divide-y divide-gray-200 dark:divide-gray-700">
             @forelse ($items as $item)
@@ -81,7 +80,7 @@
                         </p>
                         @if ($item->memo)
                           <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                            {{ $item->memo }}
+                            {!!nl2br(e($item->memo))!!}
                           </p>
                         @endif
                         @if ($item->tags()->exists())

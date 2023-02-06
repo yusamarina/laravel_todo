@@ -27,7 +27,7 @@
               </h3>
               <p class="text-sm text-gray-900 pt-9">メモ</p>
               <div class="flex items-center border-b border-teal-500 pt-3">
-                <input type="text" name="memo" value="{{ old('memo') }}" class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" placeholder="例：玄関掃除をする。">
+                <textarea rows="5" name="memo" value="{{ old('memo') }}" class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" placeholder="例：玄関掃除をする。">{{ old('memo') }}</textarea>
               </div>
               <p class="text-sm text-gray-900 pt-9">タグ</p>
               <div class="flex items-center border-b border-teal-500 pt-3">

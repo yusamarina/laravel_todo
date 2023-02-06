@@ -64,7 +64,7 @@
                           </p>
                           @if ($item->memo)
                             <p class="line-through decoration-gray-500 text-sm text-gray-500 truncate dark:text-gray-400">
-                              {{ $item->memo }}
+                              {!!nl2br(e($item->memo))!!}
                             </p>
                           @endif
                           @if ($item->tags()->exists())

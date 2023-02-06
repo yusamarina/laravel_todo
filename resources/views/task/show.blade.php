@@ -65,14 +65,14 @@
                         {{ $item->title }}
                       </p>
                       <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                        {{ $item->memo }}
+                        {!!nl2br(e($item->memo))!!}
                       </p>
                     @else
                       <p class="line-through decoration-gray-500 text-base font-semibold text-gray-900 truncate dark:text-white">
                         {{ $item->title }}
                       </p>
                       <p class="line-through decoration-gray-500 text-sm text-gray-500 truncate dark:text-gray-400">
-                        {{ $item->memo }}
+                        {!!nl2br(e($item->memo))!!}
                       </p>
                     @endif
 
