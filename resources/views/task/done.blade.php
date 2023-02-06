@@ -1,29 +1,23 @@
 <x-app-layout>
-  <x-slot name="header">
-      <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-          {{ __('Done') }}
-      </h2>
-  </x-slot>
-
   <div class="flex justify-center text-xl pt-6">
     <form action="{{ route('done_task') }}" method="GET">
       <div class="flex items-center border-b border-teal-700">
         <input type="text" name="keyword" value="{{ $keyword }}" class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none">
-        <input type="submit" value="検索" class="flex-shrink-0 font-semibold bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-white text-sm border-4 py-1 px-2 rounded">
+        <input type="submit" value="検索" class="flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-white text-sm border-4 py-1 px-2 rounded">
       </div>
       <div class="flex items-center border-b border-teal-700 pt-6">
         <input type="text"  name="tag_keyword" value="{{ $tag_keyword }}" class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none">
-        <input type="submit" value="タグで検索" class="flex-shrink-0 font-semibold bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-white text-sm border-4 py-1 px-2 rounded">
+        <input type="submit" value="タグで検索" class="flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-white text-sm border-4 py-1 px-2 rounded">
       </div>
     </form>
   </div>
 
   <div class="flex justify-center text-xl pt-6">
     <form action="{{route('done_task')}}">
-      <button type="submit" name="sort" value="0" class="flex-shrink-0 font-semibold bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-white text-sm border-4 py-1 px-2 rounded">
+      <button type="submit" name="sort" value="0" class="flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-white text-sm border-4 py-1 px-2 rounded">
         作成日順
       </button>
-      <button type="submit" name="sort" value="1" class="flex-shrink-0 font-semibold bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-white text-sm border-4 py-1 px-2 rounded">
+      <button type="submit" name="sort" value="1" class="flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-white text-sm border-4 py-1 px-2 rounded">
         期限が近い順
       </button>
     </form>
@@ -31,7 +25,7 @@
 
   <table class="flex justify-center text-xl">
     <div class="flex justify-center text-xl py-12">
-      <button class="flex-shrink-0 font-semibold bg-rose-400 hover:bg-rose-700 border-rose-400 hover:border-rose-700 hover:text-white text-rose-900 text-sm border-4 py-1 px-2 rounded">
+      <button class="flex-shrink-0 bg-indigo-900 hover:bg-indigo-700 border-indigo-900 hover:border-indigo-700 text-white text-base border-4 py-1 px-2 rounded">
         <a href="{{ route('task_add') }}">新しいタスクを登録する</a>
       </button>
     </div>
@@ -40,7 +34,7 @@
       <div class="w-full max-w-2xl p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
         <div class="flex items-center justify-between mb-4">
           <h5 class="text-xl font-bold leading-none text-gray-900">ToDo List</h5>
-          <a href="{{ route('done_task') }}" class="text-sm font-medium text-blue-900 hover:underline">
+          <a href="{{ route('done_task') }}" class="text-sm font-medium text-indigo-700 hover:underline">
             View all
           </a>
         </div>
@@ -69,7 +63,7 @@
                             {{ $item->title }}
                           </p>
                           @if ($item->memo)
-                            <p class="text-sm text-gray-500 truncate dark:text-gray-400">
+                            <p class="line-through decoration-gray-500 text-sm text-gray-500 truncate dark:text-gray-400">
                               {{ $item->memo }}
                             </p>
                           @endif
@@ -89,11 +83,11 @@
                   <div class="flex justify-end">
                     <div class="inline-flex items-center text-base font-medium text-gray-900 dark:text-white text-right">
                       <div class="text-right flex justify-center">
-                        <a href="{{ route('task_edit', ['id'=>$item->id]) }}" class="flex-shrink-0 font-semibold bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-white text-base border-4 py-1 px-2 rounded">編集</a>
-                        <form action="/task/delete" method="post" onsubmit="return confirm('削除してもよろしいですか？')">
+                        <a href="{{ route('task_edit', ['id'=>$item->id]) }}" class="flex-shrink-0 bg-indigo-900 hover:bg-indigo-700 border-indigo-900 hover:border-indigo-700 text-white text-base border-4 py-1 px-2 rounded">編集</a>
+                        <form action="/task/delete" method="post" onsubmit="return confirm('削除してもよろしいですか？')" class="px-1">
                           @csrf
                           <input type="hidden" name="id" value="{{ $item->id }}">
-                          <input type="submit" value="削除" class="text-base flex-shrink-0 bg-transparent hover:bg-rose-700 border-transparent hover:border-rose-700 border-4 text-teal-500 font-semibold hover:text-white py-1 px-2 rounded">
+                          <input type="submit" value="削除" class="text-base flex-shrink-0 bg-transparent hover:bg-rose-600 border-transparent hover:border-rose-600 border-4 text-indigo-900 hover:text-white py-1 px-2 rounded">
                         </form>
                       </div>
                     </div>

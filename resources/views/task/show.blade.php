@@ -1,21 +1,15 @@
 <x-app-layout>
-  <x-slot name="header">
-      <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-          {{ __('ToDo') }}
-      </h2>
-  </x-slot>
-
   <table>
     <div class="flex items-center justify-center pt-12">
       <div class="w-full max-w-2xl p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
         <div class="flex items-center justify-between mb-4">
           <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white">ToDo</h5>
           @if (old('status', $item->status) === 2)
-            <a href="{{ route('done_task') }}" class="text-sm font-medium text-blue-900 hover:underline">
+            <a href="{{ route('done_task') }}" class="text-sm font-medium text-indigo-700 hover:underline">
               完了したタスク一覧へ
             </a>
           @else
-            <a href="{{ route('task_index') }}" class="text-sm font-medium text-blue-900 hover:underline">
+            <a href="{{ route('task_index') }}" class="text-sm font-medium text-indigo-700 hover:underline">
               ToDo Listへ
             </a>
           @endif
@@ -39,7 +33,7 @@
                       </div>
                     @else
                       <img src="{{ asset('img/todo.png') }}" class="h-12" alt="image">
-                      <div class="text-sm font-light py-3 flex items-center justify-center">
+                      <div class="text-sm text-gray-900 font-light py-3 flex items-center justify-center">
                         <label for="status" class="font-semibold">完了</label>
                       </div>
                     @endif
@@ -47,9 +41,15 @@
                   <div class="min-w-0 px-6 items-center">
                     @if ($item->deadline)
                       @if (old('status', $item->status) !== 2)
-                        <div class="text-sm font-light text-rose-400 dark:text-gray-400 pb-3">
-                          期限：{{ $item->deadline }}
-                        </div>
+                        @if (($item->deadline) >= $one_week)
+                          <div class="text-sm text-gray-900 font-semibold dark:text-gray-400 pb-3">
+                            期限：{{ $item->deadline }}
+                          </div>
+                        @else
+                          <div class="text-sm text-rose-400 font-semibold dark:text-gray-400 pb-3">
+                            ★期限：{{ $item->deadline }}
+                          </div>
+                        @endif
                       @else
                         <div class="text-sm font-light text-gray-500 dark:text-gray-400 pb-3">
                           期限：{{ $item->deadline }}
@@ -61,17 +61,21 @@
                       </div>
                     @endif
                     @if (old('status', $item->status) !== 2)
-                      <p class="text-base font-medium text-gray-900 truncate dark:text-white">
+                      <p class="text-base font-semibold text-gray-900 truncate dark:text-white">
                         {{ $item->title }}
+                      </p>
+                      <p class="text-sm text-gray-500 truncate dark:text-gray-400">
+                        {{ $item->memo }}
                       </p>
                     @else
-                      <p class="line-through decoration-gray-500 text-base font-medium text-gray-900 truncate dark:text-white">
+                      <p class="line-through decoration-gray-500 text-base font-semibold text-gray-900 truncate dark:text-white">
                         {{ $item->title }}
                       </p>
+                      <p class="line-through decoration-gray-500 text-sm text-gray-500 truncate dark:text-gray-400">
+                        {{ $item->memo }}
+                      </p>
                     @endif
-                    <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                      {{ $item->memo }}
-                    </p>
+
                     @if ($item->tags()->exists())
                       <div class="flex">
                         @foreach ($item->tags as $tag)
@@ -87,11 +91,11 @@
               <div class="flex justify-end">
                 <div class="inline-flex items-center text-base font-medium text-gray-900 dark:text-white text-right">
                   <div class="text-right flex justify-center">
-                    <a href="{{ route('task_edit', ['id'=>$item->id]) }}" class="flex-shrink-0 font-semibold bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-white text-base border-4 py-1 px-2 rounded">編集</a>
-                    <form action="/task/delete" method="post" onsubmit="return confirm('削除してもよろしいですか？')">
+                    <a href="{{ route('task_edit', ['id'=>$item->id]) }}" class="flex-shrink-0 bg-indigo-900 hover:bg-indigo-700 border-indigo-900 hover:border-indigo-700 text-white text-base border-4 py-1 px-2 rounded">編集</a>
+                    <form action="/task/delete" method="post" onsubmit="return confirm('削除してもよろしいですか？')" class="px-1">
                       @csrf
                         <input type="hidden" name="id" value="{{ $item->id }}">
-                        <input type="submit" value="削除" class="text-base flex-shrink-0 bg-transparent hover:bg-rose-700 border-transparent hover:border-rose-700 border-4 text-teal-500 font-semibold hover:text-white py-1 px-2 rounded">
+                        <input type="submit" value="削除" class="text-base flex-shrink-0 bg-transparent hover:bg-rose-600 border-transparent hover:border-rose-600 border-4 text-indigo-900 hover:text-white py-1 px-2 rounded">
                     </form>
                   </div>
                 </div>

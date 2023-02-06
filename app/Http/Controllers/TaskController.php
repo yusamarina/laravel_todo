@@ -11,6 +11,7 @@ use Validator;
 use App\Models\Task;
 use App\Models\Tag;
 use Illuminate\View\View;
+use Carbon\Carbon;
 
 class TaskController extends Controller
 {
@@ -20,6 +21,7 @@ class TaskController extends Controller
         $tag_keyword = $request->input('tag_keyword');
         $sort = $request->get('sort');
         $query = Task::query();
+        $one_week = new Carbon('+7 day');
 
         if (!empty($keyword)) {
             $escape_word = addcslashes($keyword, '\\_%');
@@ -45,7 +47,7 @@ class TaskController extends Controller
             $items = $query->get();
         }
 
-        return view('task.index', compact('items', 'keyword', 'sort', 'tag_keyword'));
+        return view('task.index', compact('items', 'keyword', 'sort', 'tag_keyword', 'one_week'));
     }
 
     public function done(Request $request)
@@ -83,12 +85,13 @@ class TaskController extends Controller
     public function show($id)
     {
         $item = Task::find($id);
+        $one_week = new Carbon('+7 day');
 
         if (is_null($item)) {
             abort(404);
         }
 
-        return view('task.show', compact('item'));
+        return view('task.show', compact('item', 'one_week'));
     }
 
     public function add(Request $request)
