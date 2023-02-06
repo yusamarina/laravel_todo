@@ -66,9 +66,15 @@
                     <a href="{{ route('task_show', ['id'=>$item->id]) }}" class="hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500">
                       <div class="min-w-0 px-6 items-center">
                         @if ($item->deadline)
-                          <div class="text-sm text-rose-400 font-semibold dark:text-gray-400 pb-3">
-                            期限：{{ $item->deadline }}
-                          </div>
+                          @if (($item->deadline) >= $one_week)
+                            <div class="text-sm text-gray-900 font-semibold dark:text-gray-400 pb-3">
+                              期限：{{ $item->deadline }}
+                            </div>
+                          @else
+                            <div class="text-sm text-rose-400 font-semibold dark:text-gray-400 pb-3">
+                              ★期限：{{ $item->deadline }}
+                            </div>
+                          @endif
                         @endif
                         <p class="text-base font-semibold text-gray-900 truncate dark:text-white">
                           {{ $item->title }}

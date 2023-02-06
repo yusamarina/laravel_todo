@@ -41,9 +41,15 @@
                   <div class="min-w-0 px-6 items-center">
                     @if ($item->deadline)
                       @if (old('status', $item->status) !== 2)
-                        <div class="text-sm font-light text-rose-400 dark:text-gray-400 pb-3">
-                          期限：{{ $item->deadline }}
-                        </div>
+                        @if (($item->deadline) >= $one_week)
+                          <div class="text-sm text-gray-900 font-semibold dark:text-gray-400 pb-3">
+                            期限：{{ $item->deadline }}
+                          </div>
+                        @else
+                          <div class="text-sm text-rose-400 font-semibold dark:text-gray-400 pb-3">
+                            ★期限：{{ $item->deadline }}
+                          </div>
+                        @endif
                       @else
                         <div class="text-sm font-light text-gray-500 dark:text-gray-400 pb-3">
                           期限：{{ $item->deadline }}
