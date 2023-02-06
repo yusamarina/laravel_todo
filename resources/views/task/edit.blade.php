@@ -62,15 +62,15 @@
           <figcaption class="flex items-center justify-center space-x-3 pt-6">
             <div class="space-y-0.5 font-medium dark:text-white text-left">
               <div class="flex justify-center">
-                <input type="submit" value="保存" class="flex-shrink-0 font-semibold bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-white text-base border-4 py-1 px-2 rounded">
+                <input type="submit" value="保存" class="flex-shrink-0 bg-indigo-900 hover:bg-indigo-700 border-indigo-900 hover:border-indigo-700 text-white text-base border-4 py-1 px-2 rounded">
               </div>
               <div class="pt-6">
                 @if (old('status', $task->status) === 2)
-                  <a href="{{ route('done_task') }}" class="text-sm font-medium text-blue-900 hover:underline">
+                  <a href="{{ route('done_task') }}" class="text-sm font-medium text-indigo-900 hover:underline">
                     完了したタスク一覧へ
                   </a>
                 @else
-                  <a href="{{ route('task_index') }}" class="text-sm font-medium text-blue-900 hover:underline">
+                  <a href="{{ route('task_index') }}" class="text-sm font-medium text-indigo-700 hover:underline">
                     ToDo Listへ
                   </a>
                 @endif

@@ -16,21 +16,10 @@
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-rose-50">
             @include('layouts.navigation')
-
-            <!-- Page Heading -->
-            {{-- @if (isset($header))
-                <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endif --}}
-
-            <!-- Page Content -->
             <main>
                 {{ $slot }}
             </main>
-            <footer class="py-6 text-center text-blue-900">
+            <footer class="py-6 text-center text-indigo-900">
                 Illustration by <a href="https://icons8.com/illustrations/author/A7iGlOUD5Neq">dekob2</a> from <a href="https://icons8.com/illustrations">Ouch!</a>
                 <p>Copyright © 2022 ToDo App</p>
             </footer>

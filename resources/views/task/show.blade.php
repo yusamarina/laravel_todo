@@ -5,11 +5,11 @@
         <div class="flex items-center justify-between mb-4">
           <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white">ToDo</h5>
           @if (old('status', $item->status) === 2)
-            <a href="{{ route('done_task') }}" class="text-sm font-medium text-blue-900 hover:underline">
+            <a href="{{ route('done_task') }}" class="text-sm font-medium text-indigo-700 hover:underline">
               完了したタスク一覧へ
             </a>
           @else
-            <a href="{{ route('task_index') }}" class="text-sm font-medium text-blue-900 hover:underline">
+            <a href="{{ route('task_index') }}" class="text-sm font-medium text-indigo-700 hover:underline">
               ToDo Listへ
             </a>
           @endif
@@ -33,7 +33,7 @@
                       </div>
                     @else
                       <img src="{{ asset('img/todo.png') }}" class="h-12" alt="image">
-                      <div class="text-sm font-light py-3 flex items-center justify-center">
+                      <div class="text-sm text-gray-900 font-light py-3 flex items-center justify-center">
                         <label for="status" class="font-semibold">完了</label>
                       </div>
                     @endif
@@ -85,11 +85,11 @@
               <div class="flex justify-end">
                 <div class="inline-flex items-center text-base font-medium text-gray-900 dark:text-white text-right">
                   <div class="text-right flex justify-center">
-                    <a href="{{ route('task_edit', ['id'=>$item->id]) }}" class="flex-shrink-0 font-semibold bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-white text-base border-4 py-1 px-2 rounded">編集</a>
-                    <form action="/task/delete" method="post" onsubmit="return confirm('削除してもよろしいですか？')">
+                    <a href="{{ route('task_edit', ['id'=>$item->id]) }}" class="flex-shrink-0 bg-indigo-900 hover:bg-indigo-700 border-indigo-900 hover:border-indigo-700 text-white text-base border-4 py-1 px-2 rounded">編集</a>
+                    <form action="/task/delete" method="post" onsubmit="return confirm('削除してもよろしいですか？')" class="px-1">
                       @csrf
                         <input type="hidden" name="id" value="{{ $item->id }}">
-                        <input type="submit" value="削除" class="text-base flex-shrink-0 bg-transparent hover:bg-rose-700 border-transparent hover:border-rose-700 border-4 text-teal-500 font-semibold hover:text-white py-1 px-2 rounded">
+                        <input type="submit" value="削除" class="text-base flex-shrink-0 bg-transparent hover:bg-rose-600 border-transparent hover:border-rose-600 border-4 text-indigo-900 hover:text-white py-1 px-2 rounded">
                     </form>
                   </div>
                 </div>

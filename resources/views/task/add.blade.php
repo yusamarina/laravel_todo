@@ -17,7 +17,7 @@
     <table class="flex justify-center text-xl">
       @csrf
         <div class="py-6 flex items-center justify-center">
-          <div class="w-full max-w-2xl p-4 bg-yellow-50 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
+          <div class="w-full max-w-2xl p-4 bg-white rounded-lg shadow sm:p-8">
             <div class="p-4">
               <p class="text-sm text-gray-900">タスク名</p>
               <h3 class="text-2xl font-semibold text-gray-900 dark:text-white">
@@ -48,10 +48,10 @@
               <figcaption class="flex items-center justify-center space-x-3 pt-6">
                 <div class="space-y-0.5 font-medium dark:text-white text-left">
                   <div class="flex justify-center">
-                    <input type="submit" value="登録" class="flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded" type="button">
+                    <input type="submit" value="登録" class="flex-shrink-0 bg-indigo-900 hover:bg-indigo-700 border-indigo-900 hover:border-indigo-700 text-sm border-4 text-white py-1 px-2 rounded" type="button">
                   </div>
                   <div class="pt-6">
-                    <a href="{{ route('task_index') }}" class="text-sm font-medium text-blue-900 hover:underline">
+                    <a href="{{ route('task_index') }}" class="text-sm font-medium text-indigo-700 hover:underline">
                       ToDo Listへ
                     </a>
                   </div>
