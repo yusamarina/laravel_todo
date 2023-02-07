@@ -1,66 +1,56 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+<h1 align="center">ToDo App</h1>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
 
-## About Laravel
+## サービス概要
+タスクの管理が出来るサービスです。
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 使い方
+1. 新規登録もしくはログインします。
+2. タスクを作成します。
+3. 一覧ページでタスクを確認することが出来ます。
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 前回作成時での主な機能
+#### 新規登録、ログイン機能
+- 新規登録することが出来る。
+- 登録したユーザーはログインすることが出来る。
+- ログイン後はプロフィールの変更やログアウトすることが出来る。
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+#### タスクのCRUD機能
+- タスク名、メモ、ステータス（未着手、完了）を登録・編集することが出来る。
+- メモは入力せずに登録が出来るが、タスク名は入力必須である。
+- エラー発生時にはエラー文が日本語で表示される。
+- タスク作成時にログインユーザーのidが紐づけられて保存される。
+- 編集・削除が出来るのは自分のタスクのみである。
+- 一覧ページから詳細・編集・削除ページへ遷移することが出来る。
+- 一覧ページに表示されるタスクはステータスが「未着手」のタスクのみである。
+- 表示されるタスクは自分のタスクのみである。
 
-## Learning Laravel
+#### 検索機能
+- ステータスが「未着手」のタスクをタスク名で検索することが出来る。
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## 新たに追加した機能
+#### タスクのCRUD機能
+- 自分以外のidを直打ちした場合に404ページへ遷移するよう修正。
+- 一覧ページから直接タスクを削除することができ、削除時には確認ダイアログが表示される。
+- 完了したタスクの一覧ページを作成。
+- タスクを並び替えできるボタンを追加（作成日順、期限日順、ステータス順）。
+- 一覧ページから直接タスクを削除することができ、削除時には確認ダイアログが表示される。
+- タスクに期限を設定することができ、期限の１週間前になると期限日に「★」がつき文字色も変化する。
+- タグを設定することができ、タグはログインユーザーに紐づく。
+- 全体的なUIの修正。
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+#### 検索機能
+- タグで検索することが出来る。
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## 使用技術
+#### バックエンド
+- PHP（8.1.9）
+- Laravel（9.48.0）
 
-## Laravel Sponsors
+#### フロンドエンド
+- TailwindCSS
+- HTML
+- CSS
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+#### インフラ
+- MAMP
