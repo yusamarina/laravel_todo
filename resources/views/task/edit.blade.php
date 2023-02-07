@@ -1,8 +1,8 @@
 <x-app-layout>
   @if (count($errors) > 0)
-  <div class="flex justify-center text-base pt-6">
-    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded" role="alert">
-      <strong class="font-bold">
+  <div class="flex justify-center pt-6">
+    <div class="px-4 py-3 rounded" role="alert">
+      <strong class="text-sm text-rose-700">
         <ul>
         @foreach ($errors->all() as $error)
           <li>{{ $error }}</li>
@@ -11,8 +11,8 @@
       </strong>
     </div>
   </div>
-
   @endif
+
   <form action="/task/edit" method="post">
     <table>
       @csrf
@@ -22,13 +22,13 @@
           <p class="text-sm text-gray-900">タスク名</p>
           <h3 class="text-2xl font-semibold text-gray-900 dark:text-white">
             <div class="flex items-center border-b border-teal-500 pt-3">
-              <input type="text" name="title" value="{{ $task->title }}" class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none">
+              <input type="text" name="title" value="{{ $task->title }}" class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" placeholder="例：掃除">
             </div>
           </h3>
             <p class="text-sm text-gray-900 pt-9">メモ</p>
             <p class="font-light">
               <div class="flex items-center border-b border-teal-500 pt-3">
-                <input type="text" name="memo" value="{{ $task->memo }}" class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none">
+                <textarea rows="5" name="memo" value="{{ $task->memo }}" class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" placeholder="例：玄関掃除をする。">{{ $task->memo }}</textarea>
               </div>
             </p>
             <p class="text-sm text-gray-900 pt-9">ステータス</p>
@@ -50,9 +50,9 @@
               </select>
             </div>
             <p class="text-sm text-gray-900 pt-9">タグ</p>
-
+            <p class="text-sm text-gray-500">※複数のタグを設定する場合は「、」で区切って入力してください。</p>
             <div class="flex items-center border-b border-teal-500 pt-3">
-              <input type="text" name="tag" value="{{ old('tag', $tag ?? null) }}" class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none">
+              <input type="text" name="tag" value="{{ old('tag', $tag ?? null) }}" class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" placeholder="例：家事、大掃除">
             </div>
 
             <p class="text-sm text-gray-900 pt-9">期限</p>

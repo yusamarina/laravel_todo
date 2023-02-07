@@ -1,8 +1,8 @@
 <x-app-layout>
   @if (count($errors) > 0)
-    <div class="flex justify-center text-base pt-6">
-      <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded" role="alert">
-        <strong class="font-bold">
+    <div class="flex justify-center pt-6">
+      <div class="px-4 py-3 rounded" role="alert">
+        <strong class="text-sm text-rose-700">
           <ul>
           @foreach ($errors->all() as $error)
             <li>{{ $error }}</li>
@@ -27,11 +27,12 @@
               </h3>
               <p class="text-sm text-gray-900 pt-9">メモ</p>
               <div class="flex items-center border-b border-teal-500 pt-3">
-                <input type="text" name="memo" value="{{ old('memo') }}" class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" placeholder="例：玄関掃除をする。">
+                <textarea rows="5" name="memo" value="{{ old('memo') }}" class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" placeholder="例：玄関掃除をする。">{{ old('memo') }}</textarea>
               </div>
               <p class="text-sm text-gray-900 pt-9">タグ</p>
+              <p class="text-sm text-gray-500">※複数のタグを設定する場合は「、」で区切って入力してください。</p>
               <div class="flex items-center border-b border-teal-500 pt-3">
-                <input type="text" name="tag" value="{{ old('tag') }}" class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none">
+                <input type="text" name="tag" value="{{ old('tag') }}" class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" placeholder="例：家事、大掃除">
               </div>
               <p class="text-sm text-gray-900 pt-9">ステータス</p>
               <div class="inline-block relative w-64 pt-3">
