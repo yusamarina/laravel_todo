@@ -18,7 +18,8 @@ class TaskController extends Controller
     public function index (Request $request)
     {
         $keyword = $request->input('keyword');
-        $tag_keyword = $request->input('tag_keyword');
+        $tags = Tag::all();
+        $select_tag = $request->input('select_tag');
         $sort = $request->get('sort');
         $query = Task::query();
         $one_week = new Carbon('+7 day');
@@ -28,10 +29,9 @@ class TaskController extends Controller
             $query->where('title', 'LIKE', "%{$escape_word}%");
         }
 
-        if (!empty($tag_keyword)) {
-            $escape_word = addcslashes($tag_keyword, '\\_%');
-            $query->whereHas('tags', function ($query) use ($escape_word) {
-                $query->where('name', 'LIKE', "%{$escape_word}%");
+        if (!empty($select_tag)) {
+            $query->whereHas('tags', function ($query) use ($select_tag) {
+                $query->where('name', $select_tag);
             });
         }
 
@@ -47,13 +47,14 @@ class TaskController extends Controller
             $items = $query->get();
         }
 
-        return view('task.index', compact('items', 'keyword', 'sort', 'tag_keyword', 'one_week'));
+        return view('task.index', compact('items', 'tags', 'keyword', 'select_tag', 'sort', 'one_week'));
     }
 
     public function done(Request $request)
     {
         $keyword = $request->input('keyword');
-        $tag_keyword = $request->input('tag_keyword');
+        $tags = Tag::all();
+        $select_tag = $request->input('select_tag');
         $sort = $request->get('sort');
         $query = Task::query();
 
@@ -61,10 +62,9 @@ class TaskController extends Controller
             $query->where('title', 'LIKE', "%{$keyword}%");
         }
 
-        if (!empty($tag_keyword)) {
-            $escape_word = addcslashes($tag_keyword, '\\_%');
-            $query->whereHas('tags', function ($query) use ($escape_word) {
-                $query->where('name', 'LIKE', "%{$escape_word}%");
+        if (!empty($select_tag)) {
+            $query->whereHas('tags', function ($query) use ($select_tag) {
+                $query->where('name', $select_tag);
             });
         }
 
@@ -78,7 +78,7 @@ class TaskController extends Controller
             $items = $query->get();
         }
 
-        return view('task.done', compact('items', 'keyword', 'tag_keyword'));
+        return view('task.done', compact('items', 'tags', 'keyword', 'select_tag'));
     }
 
 

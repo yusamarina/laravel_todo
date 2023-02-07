@@ -1,13 +1,26 @@
 <x-app-layout>
   <div class="flex justify-center text-xl pt-6">
-    <form action="{{ route('task_index') }}" method="GET">
+    <form action="{{ route('task_index') }}" method="GET" class="px-64">
       <div class="flex items-center border-b border-teal-700">
         <input type="text" name="keyword" value="{{ $keyword }}" class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none">
         <input type="submit" value="検索" class="flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-white text-sm border-4 py-1 px-2 rounded">
       </div>
-      <div class="flex items-center border-b border-teal-700 pt-6">
-        <input type="text"  name="tag_keyword" value="{{ $tag_keyword }}" class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none">
-        <input type="submit" value="タグで検索" class="flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded">
+      <div class="flex justify-center pt-6">
+        @if ($tags)
+          <div class="flex flex-wrap items-center">
+            @forelse ($tags as $tag)
+              <label>
+                <input type="radio" name="select_tag" value="{{ $tag->name }}">
+                <span class="text-sm pr-6 text-gray-900">{{ $tag->name }}</span>
+              </label>
+            @empty
+              <div class="text-sm text-gray-900 pr-3">タグの登録数：0</div>
+            @endforelse
+          </div>
+          <div class="flex items-center">
+            <input type="submit" value="タグで検索" class="flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded">
+          </div>
+        @endif
       </div>
     </form>
   </div>
@@ -108,7 +121,7 @@
                 </li>
               @endif
             @empty
-              <div class="text-xl">タスクを登録してみましょう！</div>
+              <div class="text-base">タスクを登録してみましょう！</div>
             @endforelse
           </ul>
         </div>
