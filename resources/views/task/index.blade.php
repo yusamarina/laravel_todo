@@ -18,8 +18,13 @@
                 <div class="text-sm text-gray-900 pr-3">タグの登録数：0</div>
               @endforelse
             </div>
-            <div class="flex items-center">
+            <div class="flex items-center pr-3">
               <input type="submit" value="タグで検索" class="flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded">
+            </div>
+            <div class="flex items-center">
+              <button class="flex-shrink-0 bg-indigo-900 hover:bg-indigo-700 border-indigo-900 hover:border-indigo-700 text-white text-sm border-4 py-1 px-2 rounded">
+                <a href="{{ route('tag.index') }}">タグの管理</a>
+              </button>
             </div>
           @endif
         </div>

@@ -33,4 +33,9 @@ class Tag extends Model
     {
         return $this->belongsToMany('App\Task')->withTimestamps();
     }
+
+    public function scopeNameEqual($query, $str)
+    {
+        return $query->where('name', $str);
+    }
 }
