@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TaskController;
+use App\Http\Controllers\TagController;
 use App\Http\Middleware\TaskMiddleware;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -40,6 +41,7 @@ Route::middleware('auth')->group(function () {
     Route::get('task/find', [TaskController::class, 'find'])->name('task_find');
     Route::post('task/find', [TaskController::class, 'search']);
     Route::get('task/done', [TaskController::class, 'done'])->name('done_task');
+    Route::resource('tag', TagController::class)->only(['index', 'update', 'destroy', 'edit']);
 });
 
 require __DIR__.'/auth.php';

@@ -1,10 +1,11 @@
 <x-app-layout>
   <div class="flex justify-center text-xl pt-6">
     <form action="{{ route('done_task') }}" method="GET" class="px-64">
-      <div class="flex items-center border-b border-teal-700">
-        <input type="text" name="keyword" value="{{ $keyword }}" class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none">
-        <input type="submit" value="検索" class="flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-white text-sm border-4 py-1 px-2 rounded">
-      </div>
+      @csrf
+        <div class="flex items-center border-b border-teal-700">
+          <input type="text" name="keyword" value="{{ $keyword }}" class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none">
+          <input type="submit" value="検索" class="flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-white text-sm border-4 py-1 px-2 rounded">
+        </div>
       <div class="flex justify-center pt-6">
         @if ($tags)
           <div class="flex flex-wrap items-center">
@@ -17,8 +18,13 @@
               <div class="text-sm text-gray-900 pr-3">タグの登録数：0</div>
             @endforelse
           </div>
-          <div class="flex items-center">
+          <div class="flex items-center pr-3">
             <input type="submit" value="タグで検索" class="flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded">
+          </div>
+          <div class="flex items-center">
+            <button class="flex-shrink-0 bg-indigo-900 hover:bg-indigo-700 border-indigo-900 hover:border-indigo-700 text-white text-sm border-4 py-1 px-2 rounded">
+              <a href="{{ route('tag.index') }}">タグの管理</a>
+            </button>
           </div>
         @endif
       </div>
@@ -27,12 +33,13 @@
 
   <div class="flex justify-center text-xl pt-6">
     <form action="{{route('done_task')}}">
-      <button type="submit" name="sort" value="0" class="flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-white text-sm border-4 py-1 px-2 rounded">
-        作成日順
-      </button>
-      <button type="submit" name="sort" value="1" class="flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-white text-sm border-4 py-1 px-2 rounded">
-        期限が近い順
-      </button>
+      @csrf
+        <button type="submit" name="sort" value="0" class="flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-white text-sm border-4 py-1 px-2 rounded">
+          作成日順
+        </button>
+        <button type="submit" name="sort" value="1" class="flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-white text-sm border-4 py-1 px-2 rounded">
+          期限が近い順
+        </button>
     </form>
   </div>
 

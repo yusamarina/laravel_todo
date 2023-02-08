@@ -11,8 +11,8 @@
         </strong>
       </div>
     </div>
-
   @endif
+
   <form action="/task/add" method="post">
     <table class="flex justify-center text-xl">
       @csrf
